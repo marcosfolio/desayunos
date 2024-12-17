@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Compiled files
+dist/
+public/client/
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db 
