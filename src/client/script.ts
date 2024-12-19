@@ -1,3 +1,5 @@
+export { };
+
 interface EmojiDictionary {
     [key: string]: string;
 }
