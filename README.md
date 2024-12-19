@@ -1,4 +1,4 @@
-# Desayunos Generator 🍳
+# Breakfast Generator 🍳
 
 A fun and interactive breakfast generator built with React and TypeScript. This application helps you decide what to eat for breakfast by randomly combining proteins, carbohydrates, and fruits with a delightful animation.
 
