@@ -1,11 +1,11 @@
 import React from 'react';
-import BreakfastGenerator from './components/BreakfastGenerator/BreakfastGenerator';
+import MenuGenerator from './components/MenuGenerator/MenuGenerator';
 import './App.css';
 
 const App: React.FC = () => {
     return (
         <div className="App">
-            <BreakfastGenerator />
+            <MenuGenerator />
         </div>
     );
 };

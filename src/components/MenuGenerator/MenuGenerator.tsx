@@ -1,14 +1,14 @@
 import React, { useState, useCallback } from 'react';
-import './BreakfastGenerator.css';
+import './MenuGenerator.css';
 import {
     protein,
     carbohydrates,
     fruits,
     generatePhrase,
     generateTextPhrase
-} from '../../helpers/breakfastGeneratorHelpers';
+} from '../../helpers/menuGeneratorHelpers';
 
-const BreakfastGenerator = () => {
+const MenuGenerator = () => {
     const [phrase, setPhrase] = useState<string>("Dale al botón para ver que desayunas hoy...");
     const [generatedWords, setGeneratedWords] = useState<string>("");
     const [textWords, setTextWords] = useState<string>("");
@@ -73,4 +73,4 @@ const BreakfastGenerator = () => {
     );
 };
 
-export default BreakfastGenerator; 
+export default MenuGenerator; 
