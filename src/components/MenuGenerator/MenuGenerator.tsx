@@ -7,6 +7,7 @@ import {
     generatePhrase,
     generateTextPhrase
 } from '../../helpers/menuGeneratorHelpers';
+import Button from '../Button/Button';
 
 const MenuGenerator = () => {
     const [phrase, setPhrase] = useState<string>("Dale al botón para ver que desayunas hoy...");
@@ -65,9 +66,11 @@ const MenuGenerator = () => {
                 </button>
             </div>
             {showReset && (
-                <button className="reset-btn" onClick={resetDisplay}>
-                    Reset
-                </button>
+                <Button
+                    className="reset-btn"
+                    onClick={resetDisplay}
+                    text="Reset"
+                />
             )}
         </div>
     );

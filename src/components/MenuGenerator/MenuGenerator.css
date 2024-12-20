@@ -1,5 +1,7 @@
 .container {
-    min-width: 520px;
+    width: 90%;
+    max-width: 520px;
+    margin: 0 auto;
     min-height: 470px;
     display: flex;
     flex-direction: column;
@@ -8,7 +10,6 @@
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 500px;
 }
 
 h1 {
@@ -105,7 +106,7 @@ h1 {
 
 .reset-btn {
     position: fixed;
-    top: 20px;
+    top: 100px;
     right: 20px;
     background-color: #f44336;
     color: white;
@@ -137,6 +138,34 @@ h1 {
 
     100% {
         background-position: 0% 50%;
+    }
+}
+
+/* Add media queries for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        margin: 60px auto;
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .generate-btn {
+        font-size: 24px;
+        padding: 15px 30px;
+    }
+
+    .generated-words {
+        font-size: 3rem;
+    }
+
+    .phrase-display {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .generated-words {
+        font-size: 2.5rem;
     }
 }
 

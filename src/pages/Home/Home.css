@@ -1,0 +1,19 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.welcome-title {
+    font-family: "Matemasie", sans-serif;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(270deg, #FFD700, #FFA500, #FF4500, #FFA500);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: gradientRotation 10s ease infinite;
+}
