@@ -1,24 +1,41 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home/Home';
+import Food from './pages/Food/Food';
 import Shopping from './pages/Shopping/Shopping';
+import MenuComposer from './pages/MenuComposer/MenuComposer';
 import './App.css';
 
-const App = () => {
+function App() {
     return (
-        <BrowserRouter>
-            <div className="App">
-                <nav className="nav-menu">
-                    <Link to="/">Generador de desayunos</Link>
-                    <Link to="/shop">La Compra</Link>
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/food">Food</Link>
+                        </li>
+                        <li>
+                            <Link to="/menu">Menu Composer</Link>
+                        </li>
+                        <li>
+                            <Link to="/shopping">Shopping</Link>
+                        </li>
+                    </ul>
                 </nav>
+
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/shop" element={<Shopping />} />
+                    <Route path="/food" element={<Food />} />
+                    <Route path="/menu" element={<MenuComposer />} />
+                    <Route path="/shopping" element={<Shopping />} />
                 </Routes>
             </div>
-        </BrowserRouter>
+        </Router>
     );
-};
+}
 
 export default App; 
