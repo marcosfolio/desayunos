@@ -1,32 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import Food from './pages/Food/Food';
-import Shopping from './pages/Shopping/Shopping';
-import MenuComposer from './pages/MenuComposer/MenuComposer';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './views/Home/Home';
+import Food from './views/Food/Food';
+import Shopping from './views/Shopping/Shopping';
+import MenuComposer from './views/MenuComposer/MenuComposer';
+import HeaderMenu from './components/HeaderMenu/HeaderMenu';
 
 function App() {
     return (
         <Router>
             <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/food">Food</Link>
-                        </li>
-                        <li>
-                            <Link to="/menu">Menu Composer</Link>
-                        </li>
-                        <li>
-                            <Link to="/shopping">Shopping</Link>
-                        </li>
-                    </ul>
-                </nav>
-
+                <HeaderMenu />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/food" element={<Food />} />
