@@ -1,7 +1,6 @@
 .container {
-    width: 90%;
     max-width: 520px;
-    margin: 0 auto;
+    margin: 0 20px;
     min-height: 470px;
     display: flex;
     flex-direction: column;
@@ -12,7 +11,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.title {
     font-family: "Matemasie", sans-serif;
     font-weight: 700;
     font-size: 2.5rem;
@@ -105,9 +104,6 @@ h1 {
 }
 
 .reset-btn {
-    position: fixed;
-    top: 100px;
-    right: 20px;
     background-color: #f44336;
     color: white;
     border: none;
@@ -116,6 +112,9 @@ h1 {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
+    max-width: 120px;
+    margin: 0 auto;
+    display: block;
 }
 
 .text-words {

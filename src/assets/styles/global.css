@@ -1,6 +1,15 @@
 /* Reset default styles */
+@font-face {
+    font-family: 'Cooper';
+    src: url('../fonts/CooperBlack-Std.woff'), url('../fonts/CooperBlack-Std.woff2'), url('../fonts/CooperBlack-Std.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;

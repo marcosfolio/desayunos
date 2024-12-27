@@ -10,7 +10,7 @@ import {
 import Button from '../Button/Button';
 
 const MenuGenerator = () => {
-    const [phrase, setPhrase] = useState<string>("Dale al botón para ver que desayunas hoy...");
+    const [phrase, setPhrase] = useState<string>("Dale al botón para ver que comes hoy...");
     const [generatedWords, setGeneratedWords] = useState<string>("");
     const [textWords, setTextWords] = useState<string>("");
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
@@ -18,7 +18,7 @@ const MenuGenerator = () => {
     const [isGenerating, setIsGenerating] = useState<boolean>(false);
 
     const resetDisplay = useCallback(() => {
-        setPhrase("Dale al botón para ver que desayunas hoy...");
+        setPhrase("Dale al botón para ver que comes hoy...");
         setGeneratedWords("");
         setTextWords("");
         setShowReset(false);
@@ -50,7 +50,7 @@ const MenuGenerator = () => {
 
     return (
         <div className="container">
-            <h1>DESAYUNOS</h1>
+            <span className="title">Genera tu menú</span>
             <div className="phrase-display">{phrase}</div>
             <div className={`generated-words ${isAnimating ? 'animating' : ''} ${!generatedWords ? 'hidden' : ''}`}>
                 {generatedWords}
@@ -62,7 +62,7 @@ const MenuGenerator = () => {
                     onClick={handleGenerate}
                     disabled={isGenerating}
                 >
-                    a desayunaaaar
+                    a comeeeeer
                 </button>
             </div>
             {showReset && (
