@@ -10,10 +10,10 @@ const HeaderMenu = () => {
                     <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/food">Food</NavLink>
+                    <NavLink to="/menu-composer">Menu Composer</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/menu">Menu Composer</NavLink>
+                    <NavLink to="/food-and-portions">Food & Portions</NavLink>
                 </li>
                 <li>
                     <NavLink to="/shopping">Shopping</NavLink>

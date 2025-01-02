@@ -6,7 +6,7 @@ import './Home.css';
 
 const Home = () => {
     return (
-        <div className="home-container">
+        <div className="container">
             <div className="welcome-container">
                 <div className="welcome-tag">
                     <FontAwesomeIcon icon={faWeightScale} />
@@ -15,7 +15,7 @@ const Home = () => {
                 <h1 className="welcome-title">Diseña menús saludables ilimitados en solo segundos</h1>
                 <p className="welcome-subtitle">Descubre una amplia variedad de menús saludables basados en proteínas, frutas y vegetales. Transforma tus hábitos alimenticios y aprende a realizar compras inteligentes para una vida más saludable.</p>
             </div>
-            <div className="menu-generator-container">
+            <div className="section-container">
                 <MenuGenerator />
             </div>
         </div>

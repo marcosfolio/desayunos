@@ -14,6 +14,18 @@ async function initDb() {
                 name TEXT NOT NULL,
                 grams INTEGER DEFAULT 150
             );
+
+            CREATE TABLE IF NOT EXISTS carbohydrates (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL UNIQUE,
+                grams INTEGER NOT NULL
+            );
+
+            CREATE TABLE IF NOT EXISTS vegetables (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL UNIQUE,
+                grams INTEGER NOT NULL
+            );
         `);
 
         console.log('Database structure initialized successfully');

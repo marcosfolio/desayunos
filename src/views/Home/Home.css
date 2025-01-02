@@ -1,4 +1,4 @@
-.home-container {
+.container {
     padding: 20px;
     flex-flow: row;
     justify-content: center;
@@ -26,7 +26,7 @@
     max-width: 800px;
 }
 
-.menu-generator-container {
+.section-container {
     width: 40%;
 }
 
@@ -64,13 +64,13 @@
 
 
 @media (max-width: 1024px) {
-    .home-container {
+    .container {
         flex-direction: column;
         align-items: center;
         padding: 1rem;
     }
 
-    .home-container>* {
+    .container>* {
         width: 100%;
         max-width: 600px;
     }
@@ -89,7 +89,7 @@
 }
 
 @media (max-width: 480px) {
-    .home-container {
+    .container {
         padding: 0.5rem;
     }
 

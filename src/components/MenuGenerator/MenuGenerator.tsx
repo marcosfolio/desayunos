@@ -49,7 +49,7 @@ const MenuGenerator = () => {
     }, [isGenerating]);
 
     return (
-        <div className="container">
+        <div className="menu-generator-container">
             <span className="title">Genera tu menú</span>
             <div className="phrase-display">{phrase}</div>
             <div className={`generated-words ${isAnimating ? 'animating' : ''} ${!generatedWords ? 'hidden' : ''}`}>
