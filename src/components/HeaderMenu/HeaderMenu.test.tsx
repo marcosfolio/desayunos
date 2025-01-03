@@ -18,7 +18,7 @@ describe('HeaderMenu', () => {
         renderHeader();
 
         expect(screen.getByText('Home')).toBeInTheDocument();
-        expect(screen.getByText('Food')).toBeInTheDocument();
+        expect(screen.getByText('Food & Portions')).toBeInTheDocument();
         expect(screen.getByText('Menu Composer')).toBeInTheDocument();
         expect(screen.getByText('Shopping')).toBeInTheDocument();
     });
@@ -27,8 +27,8 @@ describe('HeaderMenu', () => {
         renderHeader();
 
         expect(screen.getByText('Home').closest('a')).toHaveAttribute('href', '/');
-        expect(screen.getByText('Food').closest('a')).toHaveAttribute('href', '/food');
-        expect(screen.getByText('Menu Composer').closest('a')).toHaveAttribute('href', '/menu');
+        expect(screen.getByText('Food & Portions').closest('a')).toHaveAttribute('href', '/food-and-portions');
+        expect(screen.getByText('Menu Composer').closest('a')).toHaveAttribute('href', '/menu-composer');
         expect(screen.getByText('Shopping').closest('a')).toHaveAttribute('href', '/shopping');
     });
 

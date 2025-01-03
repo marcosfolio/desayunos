@@ -5,6 +5,7 @@ import MenuComposer from './views/MenuComposer/MenuComposer';
 import Shopping from './views/Shopping/Shopping';
 import FoodAndPortions from './views/FoodAndPortions/FoodAndPortions';
 import HeaderMenu from './components/HeaderMenu/HeaderMenu';
+import './assets/styles/colors.css';
 
 function App() {
     return (

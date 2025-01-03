@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import './MenuComposer.css';
+import Switch from '../../components/Switch/Switch';
 
 interface FoodItem {
     id: number;
@@ -39,27 +40,17 @@ const MenuComposer = () => {
         <div className="menu-composer-container">
             <div className="menu-header">
                 <h1 className="menu-composer-title">Menu Composer</h1>
-                {/* MMG: Crear componente Switch */}
-                <div className="carbs-switch">
-                    <label className="switch">
-                        <input
-                            type="checkbox"
-                            checked={noCarbs}
-                            onChange={(e) => {
-                                setNoCarbs(e.target.checked);
-                                if (e.target.checked) {
-                                    setSelectedCarb('');
-                                }
-                            }}
-                        />
-                        <span className="slider round"></span>
-                    </label>
-                    <span className="switch-label">
-                        {noCarbs ? 'no carbs menu' : 'menu with carbohydrates'}
-                    </span>
-                </div>
+                <Switch
+                    checked={noCarbs}
+                    onChange={(checked) => {
+                        setNoCarbs(checked);
+                        if (checked) {
+                            setSelectedCarb('');
+                        }
+                    }}
+                    label={noCarbs ? 'no carbs menu' : 'menu with carbohydrates'}
+                />
             </div>
-            {/* MMG: Crear componente Selector */}
             <div className="selects-container">
                 <div className="select-group">
                     <label>Proteína</label>
