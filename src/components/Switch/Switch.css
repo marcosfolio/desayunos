@@ -1,7 +1,7 @@
 .switch-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
 }
 
 .switch {
@@ -9,6 +9,11 @@
     display: inline-block;
     width: 60px;
     height: 34px;
+}
+
+.switch.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .switch input {
@@ -28,6 +33,10 @@
     transition: .4s;
 }
 
+.switch.disabled .slider {
+    cursor: not-allowed;
+}
+
 .slider:before {
     position: absolute;
     content: "";
@@ -40,11 +49,7 @@
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
-}
-
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+    background-color: #4CAF50;
 }
 
 input:checked+.slider:before {
@@ -60,5 +65,6 @@ input:checked+.slider:before {
 }
 
 .switch-label {
-    font-size: 14px;
+    font-size: 1rem;
+    color: #333;
 }
