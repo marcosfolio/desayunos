@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useFetch } from '../../hooks/useFetch';
-import './MenuComposer.css';
 import Switch from '../../components/Switch/Switch';
+import SelectInput from '../../components/SelectInput/SelectInput';
+import './MenuComposer.css';
 
 interface FoodItem {
     id: number;
@@ -52,70 +53,37 @@ const MenuComposer = () => {
                 />
             </div>
             <div className="selects-container">
-                <div className="select-group">
-                    <label>Proteína</label>
-                    {proteinLoading ? (
-                        <p>Loading...</p>
-                    ) : proteinError ? (
-                        <p>Error loading proteins</p>
-                    ) : (
-                        <select
-                            value={selectedProtein}
-                            onChange={(e) => setSelectedProtein(e.target.value)}
-                        >
-                            <option value="">Selecciona una proteína</option>
-                            {proteins?.map(protein => (
-                                <option key={protein.id} value={protein.name}>
-                                    {protein.name}
-                                </option>
-                            ))}
-                        </select>
-                    )}
-                </div>
+                <SelectInput
+                    label="Proteína"
+                    value={selectedProtein}
+                    onChange={setSelectedProtein}
+                    options={proteins || []}
+                    isLoading={proteinLoading}
+                    error={proteinError}
+                    placeholder="Selecciona una proteína"
+                />
 
                 {!noCarbs && (
-                    <div className="select-group">
-                        <label>Carbohidrato</label>
-                        {carbLoading ? (
-                            <p>Loading...</p>
-                        ) : carbError ? (
-                            <p>Error loading carbohydrates</p>
-                        ) : (
-                            <select
-                                value={selectedCarb}
-                                onChange={(e) => setSelectedCarb(e.target.value)}
-                            >
-                                <option value="">Selecciona un carbohidrato</option>
-                                {carbohydrates?.map(carb => (
-                                    <option key={carb.id} value={carb.name}>
-                                        {carb.name}
-                                    </option>
-                                ))}
-                            </select>
-                        )}
-                    </div>
+                    <SelectInput
+                        label="Carbohidrato"
+                        value={selectedCarb}
+                        onChange={setSelectedCarb}
+                        options={carbohydrates || []}
+                        isLoading={carbLoading}
+                        error={carbError}
+                        placeholder="Selecciona un carbohidrato"
+                    />
                 )}
 
-                <div className="select-group">
-                    <label>Vegetal</label>
-                    {vegLoading ? (
-                        <p>Loading...</p>
-                    ) : vegError ? (
-                        <p>Error loading vegetables</p>
-                    ) : (
-                        <select
-                            value={selectedVegetable}
-                            onChange={(e) => setSelectedVegetable(e.target.value)}
-                        >
-                            <option value="">Selecciona un vegetal</option>
-                            {vegetables?.map(vegetable => (
-                                <option key={vegetable.id} value={vegetable.name}>
-                                    {vegetable.name}
-                                </option>
-                            ))}
-                        </select>
-                    )}
-                </div>
+                <SelectInput
+                    label="Vegetal"
+                    value={selectedVegetable}
+                    onChange={setSelectedVegetable}
+                    options={vegetables || []}
+                    isLoading={vegLoading}
+                    error={vegError}
+                    placeholder="Selecciona un vegetal"
+                />
             </div>
 
             <button

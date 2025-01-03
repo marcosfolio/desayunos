@@ -1,21 +1,29 @@
-import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEraser } from '@fortawesome/free-solid-svg-icons';
+import React, { ReactNode } from 'react';
 import './Button.css';
 
 interface ButtonProps {
     onClick: () => void;
     text: string;
+    disabled?: boolean;
+    icon?: ReactNode;
     className?: string;
 }
 
-const Button = ({ onClick, text, className }: ButtonProps) => {
-    const isReset = text.toLowerCase() === 'reset';
-
+const Button = ({
+    onClick,
+    text,
+    disabled = false,
+    icon,
+    className = ''
+}: ButtonProps) => {
     return (
-        <button className={className} onClick={onClick}>
-            {isReset && <FontAwesomeIcon icon={faEraser} className="button-icon" />}
+        <button
+            className={`button ${className}`}
+            onClick={onClick}
+            disabled={disabled}
+        >
             {text}
+            {icon && <span className="button-icon">{icon}</span>}
         </button>
     );
 };

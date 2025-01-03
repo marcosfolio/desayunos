@@ -36,17 +36,3 @@
 .product-card h3 {
     margin: 1rem 0;
 }
-
-.product-card a {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #FFA12B;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background 0.3s;
-}
-
-.product-card a:hover {
-    background: #F78900;
-}

@@ -7,6 +7,8 @@ import {
     generatePhrase,
     generateTextPhrase
 } from '../../helpers/menuGeneratorHelpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEraser } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button/Button';
 
 const MenuGenerator = () => {
@@ -70,6 +72,7 @@ const MenuGenerator = () => {
                     className="reset-btn"
                     onClick={resetDisplay}
                     text="Reset"
+                    icon={<FontAwesomeIcon icon={faEraser} />}
                 />
             )}
         </div>
