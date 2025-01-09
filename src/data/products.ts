@@ -1,5 +1,14 @@
-import panDextrinado from '../assets/images/pan_dextrinado.jpg';
+import panDextrinadoLino from '../assets/images/pan_dextrinado_lino.jpg';
+import panDextrinado from '../assets/images/pan_dextri.jpg';
 import cremaCacahuete from '../assets/images/crema_cacahuete.jpg';
+import panFibraSesamo from '../assets/images/pan_fibra_and_sesamo.jpg';
+import pepinillosPequenos from '../assets/images/pepinillos_pequenos.jpg';
+import brocoliMicrohondas from '../assets/images/brocoli.jpg';
+import tomatesDulcita from '../assets/images/tomates_dulcita.jpg';
+import yogurProteicoFresa from '../assets/images/yogur_proteico_fresa.jpg';
+import cottageCheese from '../assets/images/cottage_cheese.jpg';
+import clarasHuevo from '../assets/images/claras_huevo.jpg';
+import nuecesNaturales from '../assets/images/nueces.jpg';
 
 interface NutritionInfo {
     energia: number;
@@ -21,33 +30,153 @@ interface Product {
 
 export const products: Product[] = [
     {
-        name: "Pan dextrinado",
-        image: panDextrinado,
+        name: "Pan dextrinado con semillas de lino",
+        image: panDextrinadoLino,
         type: "carbohydrate",
         link: "https://www.amazon.es/Dextrin-Semillas-Lino-Santiveri-300/dp/B00DN9PEVA",
         nutrition: {
-            energia: 1,
-            grasas: 1,
-            grasasSaturadas: 1,
-            grasasInsaturadas: 1,
-            hidratosCarbono: 1,
-            azucares: 1,
-            proteinas: 1
+            energia: 366,
+            grasas: 5,
+            grasasSaturadas: 0.6,
+            grasasInsaturadas: 4.4,
+            hidratosCarbono: 59,
+            azucares: 2,
+            proteinas: 15
         }
     },
     {
         name: "Pan dextrinado",
         image: panDextrinado,
         type: "carbohydrate",
-        link: "https://www.amazon.es/Dextrin-Semillas-Lino-Santiveri-300/dp/B00DN9PEVA",
+        link: "https://www.amazon.es/SANTIVERI-Pan-Dextrin-Tradicional-Gramos/dp/B00DN9JXEY",
         nutrition: {
-            energia: 1,
-            grasas: 1,
-            grasasSaturadas: 1,
-            grasasInsaturadas: 1,
-            hidratosCarbono: 1,
-            azucares: 1,
-            proteinas: 1
+            energia: 366,
+            grasas: 3.5,
+            grasasSaturadas: 0.6,
+            grasasInsaturadas: 2.9,
+            hidratosCarbono: 62,
+            azucares: 1.1,
+            proteinas: 15
+        }
+    },
+    {
+        name: "Pan fibra y sésamo",
+        image: panFibraSesamo,
+        type: "carbohydrate",
+        link: "https://tienda.mercadona.es/product/82655/pan-fibra-sesamo-hacendado-paquete",
+        nutrition: {
+            energia: 391,
+            grasas: 7.6,
+            grasasSaturadas: 1.1,
+            grasasInsaturadas: 6.5,
+            hidratosCarbono: 60.1,
+            azucares: 3,
+            proteinas: 13
+        }
+    },
+    {
+        name: "Pepinillos pequeños",
+        image: pepinillosPequenos,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/29540/pepinillos-pequenos-hacendado-tarro",
+        nutrition: {
+            energia: 17,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 1.1,
+            azucares: 0,
+            proteinas: 1.5
+        }
+    },
+    {
+        name: "Brócoli microhondas",
+        image: brocoliMicrohondas,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/69622/floretas-brocoli-microondas-paquete",
+        nutrition: {
+            energia: 46,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 6.6,
+            azucares: 1.7,
+            proteinas: 2.8
+        }
+    },
+    {
+        name: "Tomates dulcita",
+        image: tomatesDulcita,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/69622/floretas-brocoli-microondas-paquete",
+        nutrition: {
+            energia: 33,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 4.7,
+            azucares: 4.6,
+            proteinas: 1.4
+        }
+    },
+    {
+        name: "Yogur proteico fresa",
+        image: yogurProteicoFresa,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/20996/postre-lacteo-con-fresa-proteinas-hacendado-0-mg-10-g-proteinas-pack-4",
+        nutrition: {
+            energia: 53,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 5,
+            azucares: 4.6,
+            proteinas: 8.3
+        }
+    },
+    {
+        name: "Cottage cheese",
+        image: cottageCheese,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/60963/queso-fresco-cottage-semidesnatado-vaca-hacendado-tarrina",
+        nutrition: {
+            energia: 99,
+            grasas: 4,
+            grasasSaturadas: 2.6,
+            grasasInsaturadas: 1.4,
+            hidratosCarbono: 1.7,
+            azucares: 1.7,
+            proteinas: 14
+        }
+    },
+    {
+        name: "Claras de huevo",
+        image: clarasHuevo,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/31312/claras-huevo-liquidas-pasteurizadas-botella",
+        nutrition: {
+            energia: 42,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 11
+        }
+    },
+    {
+        name: "Nueces naturales",
+        image: nuecesNaturales,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/34024/nuez-natural-hacendado-pelada-paquete",
+        nutrition: {
+            energia: 716,
+            grasas: 69.6,
+            grasasSaturadas: 6,
+            grasasInsaturadas: 63.6,
+            hidratosCarbono: 2.2,
+            azucares: 1.7,
+            proteinas: 17
         }
     },
     {
@@ -56,13 +185,13 @@ export const products: Product[] = [
         type: "protein",
         link: "https://www.amazon.es/Crema-cacahuete-Capit%C3%A1n-cacahuetes-tostados/dp/B08MW9VNH7",
         nutrition: {
-            energia: 1,
-            grasas: 1,
-            grasasSaturadas: 1,
-            grasasInsaturadas: 1,
-            hidratosCarbono: 1,
-            azucares: 1,
-            proteinas: 1
+            energia: 587,
+            grasas: 49.66,
+            grasasSaturadas: 7.72,
+            grasasInsaturadas: 41.94,
+            hidratosCarbono: 21.26,
+            azucares: 4.9,
+            proteinas: 24.35
         }
     }
 ]; 
