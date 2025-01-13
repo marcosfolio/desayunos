@@ -7,6 +7,7 @@ import {
     faCarrot
 } from '@fortawesome/free-solid-svg-icons';
 import LinkButton from '../../components/LinkButton/LinkButton';
+import Table, { TableRow } from '../../components/Table/Table';
 import './Shopping.css';
 import { products } from '../../data/products';
 
@@ -41,6 +42,38 @@ const Shopping = () => {
             default:
                 return faBreadSlice;
         }
+    };
+
+    const getNutritionTable = (nutrition: {
+        energia: number;
+        grasas: number;
+        grasasSaturadas: number;
+        grasasInsaturadas: number;
+        hidratosCarbono: number;
+        azucares: number;
+        proteinas: number;
+    }) => {
+        const headers = ['Nutriente', 'Cantidad'];
+        const rows: TableRow[] = [
+            { cells: ['Energía', `${nutrition.energia} kcal`], type: 'regular' },
+            { cells: ['Grasas', `${nutrition.grasas} g`], type: 'regular' },
+            {
+                cells: ['Grasas saturadas', `${nutrition.grasasSaturadas} g`],
+                type: 'warning'
+            },
+            {
+                cells: ['Grasas insaturadas', `${nutrition.grasasInsaturadas} g`],
+                type: 'success'
+            },
+            { cells: ['Hidratos de carbono', `${nutrition.hidratosCarbono} g`], type: 'regular' },
+            {
+                cells: ['Azúcares', `${nutrition.azucares} g`],
+                type: 'warning'
+            },
+            { cells: ['Proteínas', `${nutrition.proteinas} g`], type: 'regular' }
+        ];
+
+        return <Table headers={headers} rows={rows} />;
     };
 
     return (
@@ -87,38 +120,7 @@ const Shopping = () => {
                         {product.nutrition && (
                             <div className="nutrition-table">
                                 <h4>Tabla nutricional por 100g</h4>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Energía</td>
-                                            <td>{product.nutrition.energia} kcal</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Grasas</td>
-                                            <td>{product.nutrition.grasas} g</td>
-                                        </tr>
-                                        <tr className="warning">
-                                            <td>Grasas saturadas</td>
-                                            <td>{product.nutrition.grasasSaturadas} g</td>
-                                        </tr>
-                                        <tr className="success">
-                                            <td>Grasas insaturadas</td>
-                                            <td>{product.nutrition.grasasInsaturadas} g</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hidratos de carbono</td>
-                                            <td>{product.nutrition.hidratosCarbono} g</td>
-                                        </tr>
-                                        <tr className="warning">
-                                            <td>Azúcares</td>
-                                            <td>{product.nutrition.azucares} g</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Proteínas</td>
-                                            <td>{product.nutrition.proteinas} g</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                {getNutritionTable(product.nutrition)}
                             </div>
                         )}
                         <LinkButton

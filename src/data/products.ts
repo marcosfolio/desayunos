@@ -9,6 +9,7 @@ import yogurProteicoFresa from '../assets/images/yogur_proteico_fresa.jpg';
 import cottageCheese from '../assets/images/cottage_cheese.jpg';
 import clarasHuevo from '../assets/images/claras_huevo.jpg';
 import nuecesNaturales from '../assets/images/nueces.jpg';
+import lomoPavo from '../assets/images/lomo_de_pavo.jpg';
 
 interface NutritionInfo {
     energia: number;
@@ -132,6 +133,21 @@ export const products: Product[] = [
             hidratosCarbono: 5,
             azucares: 4.6,
             proteinas: 8.3
+        }
+    },
+    {
+        name: "Lomo de pavo",
+        image: lomoPavo,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/59138/lomo-pavo-hacendado-lonchas-pack-4",
+        nutrition: {
+            energia: 215,
+            grasas: 5.8,
+            grasasSaturadas: 2.8,
+            grasasInsaturadas: 3,
+            hidratosCarbono: 0.7,
+            azucares: 0.7,
+            proteinas: 40
         }
     },
     {

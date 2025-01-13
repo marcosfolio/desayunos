@@ -25,15 +25,29 @@ const MenuComposer = () => {
     const [selectedProtein, setSelectedProtein] = useState('');
     const [selectedCarb, setSelectedCarb] = useState('');
     const [selectedVegetable, setSelectedVegetable] = useState('');
+    const [selectedDinnerProtein, setSelectedDinnerProtein] = useState('');
+    const [selectedDinnerCarb, setSelectedDinnerCarb] = useState('');
+    const [selectedDinnerVegetable, setSelectedDinnerVegetable] = useState('');
     const [menuPhrase, setMenuPhrase] = useState('');
     const [noCarbs, setNoCarbs] = useState(false);
+    const [lunchPhrase, setLunchPhrase] = useState('');
+    const [dinnerPhrase, setDinnerPhrase] = useState('');
 
-    const handleGenerateMenu = () => {
+    const handleGenerateLunchMenu = () => {
         if (selectedProtein && (selectedCarb || noCarbs) && selectedVegetable) {
             const phrase = noCarbs
                 ? `${selectedProtein} con ${selectedVegetable}`
                 : `${selectedProtein} con ${selectedCarb} y ${selectedVegetable}`;
-            setMenuPhrase(phrase);
+            setLunchPhrase(phrase);
+        }
+    };
+
+    const handleGenerateDinnerMenu = () => {
+        if (selectedDinnerProtein && (selectedDinnerCarb || noCarbs) && selectedDinnerVegetable) {
+            const phrase = noCarbs
+                ? `${selectedDinnerProtein} con ${selectedDinnerVegetable}`
+                : `${selectedDinnerProtein} con ${selectedDinnerCarb} y ${selectedDinnerVegetable}`;
+            setDinnerPhrase(phrase);
         }
     };
 
@@ -52,51 +66,109 @@ const MenuComposer = () => {
                     label={noCarbs ? 'no carbs menu' : 'menu with carbohydrates'}
                 />
             </div>
+
             <div className="selects-container">
-                <SelectInput
-                    label="Proteína"
-                    value={selectedProtein}
-                    onChange={setSelectedProtein}
-                    options={proteins || []}
-                    isLoading={proteinLoading}
-                    error={proteinError}
-                    placeholder="Selecciona una proteína"
-                />
-
-                {!noCarbs && (
+                <h2 className="meal-title">Comida</h2>
+                <div className="select-container">
                     <SelectInput
-                        label="Carbohidrato"
-                        value={selectedCarb}
-                        onChange={setSelectedCarb}
-                        options={carbohydrates || []}
-                        isLoading={carbLoading}
-                        error={carbError}
-                        placeholder="Selecciona un carbohidrato"
+                        label="Proteína"
+                        value={selectedProtein}
+                        onChange={setSelectedProtein}
+                        options={proteins || []}
+                        isLoading={proteinLoading}
+                        error={proteinError}
+                        placeholder="Selecciona una proteína"
                     />
-                )}
 
-                <SelectInput
-                    label="Vegetal"
-                    value={selectedVegetable}
-                    onChange={setSelectedVegetable}
-                    options={vegetables || []}
-                    isLoading={vegLoading}
-                    error={vegError}
-                    placeholder="Selecciona un vegetal"
-                />
+                    {!noCarbs && (
+                        <SelectInput
+                            label="Carbohidrato"
+                            value={selectedCarb}
+                            onChange={setSelectedCarb}
+                            options={carbohydrates || []}
+                            isLoading={carbLoading}
+                            error={carbError}
+                            placeholder="Selecciona un carbohidrato"
+                        />
+                    )}
+
+                    <SelectInput
+                        label="Vegetal"
+                        value={selectedVegetable}
+                        onChange={setSelectedVegetable}
+                        options={vegetables || []}
+                        isLoading={vegLoading}
+                        error={vegError}
+                        placeholder="Selecciona un vegetal"
+                    />
+                </div>
+                <button
+                    className="generate-menu-btn"
+                    onClick={handleGenerateLunchMenu}
+                    disabled={!selectedProtein || (!noCarbs && !selectedCarb) || !selectedVegetable}
+                >
+                    Menú Comida
+                </button>
             </div>
 
-            <button
-                className="generate-menu-btn"
-                onClick={handleGenerateMenu}
-                disabled={!selectedProtein || (!noCarbs && !selectedCarb) || !selectedVegetable}
-            >
-                Menú Comida
-            </button>
+            <div className="selects-container">
+                <h2 className="meal-title">Cena</h2>
+                <div className="select-container">
+                    <SelectInput
+                        label="Proteína"
+                        value={selectedDinnerProtein}
+                        onChange={setSelectedDinnerProtein}
+                        options={proteins || []}
+                        isLoading={proteinLoading}
+                        error={proteinError}
+                        placeholder="Selecciona una proteína"
+                    />
 
-            {menuPhrase && (
-                <div className="menu-phrase">
-                    {menuPhrase}
+                    {!noCarbs && (
+                        <SelectInput
+                            label="Carbohidrato"
+                            value={selectedDinnerCarb}
+                            onChange={setSelectedDinnerCarb}
+                            options={carbohydrates || []}
+                            isLoading={carbLoading}
+                            error={carbError}
+                            placeholder="Selecciona un carbohidrato"
+                        />
+                    )}
+
+                    <SelectInput
+                        label="Vegetal"
+                        value={selectedDinnerVegetable}
+                        onChange={setSelectedDinnerVegetable}
+                        options={vegetables || []}
+                        isLoading={vegLoading}
+                        error={vegError}
+                        placeholder="Selecciona un vegetal"
+                    />
+                </div>
+                <button
+                    className="generate-menu-btn"
+                    onClick={handleGenerateDinnerMenu}
+                    disabled={!selectedDinnerProtein || (!noCarbs && !selectedDinnerCarb) || !selectedDinnerVegetable}
+                >
+                    Menú Cena
+                </button>
+            </div>
+
+            {(lunchPhrase || dinnerPhrase) && (
+                <div className="menu-phrases">
+                    {lunchPhrase && (
+                        <div className="menu-phrase">
+                            <h3>Comida:</h3>
+                            {lunchPhrase}
+                        </div>
+                    )}
+                    {dinnerPhrase && (
+                        <div className="menu-phrase">
+                            <h3>Cena:</h3>
+                            {dinnerPhrase}
+                        </div>
+                    )}
                 </div>
             )}
         </div>
