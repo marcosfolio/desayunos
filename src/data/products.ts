@@ -10,7 +10,11 @@ import cottageCheese from '../assets/images/cottage_cheese.jpg';
 import clarasHuevo from '../assets/images/claras_huevo.jpg';
 import nuecesNaturales from '../assets/images/nueces.jpg';
 import lomoPavo from '../assets/images/lomo_de_pavo.jpg';
-
+import guacamole from '../assets/images/guacamole.jpg';
+import requeson from '../assets/images/requeson.jpg';
+import atunClaroNatural from '../assets/images/atun_claro_al_natural.jpg';
+import melvaAceiteOliva from '../assets/images/melva_aceite_oliva.jpg';
+import rucula from '../assets/images/rucula.jpg';
 interface NutritionInfo {
     energia: number;
     grasas: number;
@@ -91,6 +95,21 @@ export const products: Product[] = [
         }
     },
     {
+        name: "Rúcula",
+        image: rucula,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/69753/rucula-paquete",
+        nutrition: {
+            energia: 26,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 0.8,
+            azucares: 0.4,
+            proteinas: 4.3
+        }
+    },
+    {
         name: "Brócoli microhondas",
         image: brocoliMicrohondas,
         type: "vegetable",
@@ -151,6 +170,36 @@ export const products: Product[] = [
         }
     },
     {
+        name: "Atún claro al natural",
+        image: atunClaroNatural,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/18018/atun-claro-natural-hacendado",
+        nutrition: {
+            energia: 79,
+            grasas: 0.6,
+            grasasSaturadas: 0.2,
+            grasasInsaturadas: 3,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 18
+        }
+    },
+    {
+        name: "Melva en aceite de oliva",
+        image: melvaAceiteOliva,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/18107/filetes-melva-aceite-oliva-hacendado-lata",
+        nutrition: {
+            energia: 298,
+            grasas: 24,
+            grasasSaturadas: 4.2,
+            grasasInsaturadas: 19.8,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 21
+        }
+    },
+    {
         name: "Cottage cheese",
         image: cottageCheese,
         type: "protein",
@@ -163,6 +212,21 @@ export const products: Product[] = [
             hidratosCarbono: 1.7,
             azucares: 1.7,
             proteinas: 14
+        }
+    },
+    {
+        name: "Requesón",
+        image: requeson,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/51012/requeson-mezcla-montesinos-tarrina",
+        nutrition: {
+            energia: 160,
+            grasas: 11.6,
+            grasasSaturadas: 8.1,
+            grasasInsaturadas: 3.5,
+            hidratosCarbono: 5.4,
+            azucares: 4.4,
+            proteinas: 8.7
         }
     },
     {
@@ -183,7 +247,7 @@ export const products: Product[] = [
     {
         name: "Nueces naturales",
         image: nuecesNaturales,
-        type: "protein",
+        type: "fat",
         link: "https://tienda.mercadona.es/product/34024/nuez-natural-hacendado-pelada-paquete",
         nutrition: {
             energia: 716,
@@ -196,9 +260,24 @@ export const products: Product[] = [
         }
     },
     {
+        name: "Guacamole",
+        image: guacamole,
+        type: "fat",
+        link: "https://tienda.mercadona.es/product/3840/guacamole-hacendado-95-aguacate-fresco-tarrina",
+        nutrition: {
+            energia: 149,
+            grasas: 13.7,
+            grasasSaturadas: 3.8,
+            grasasInsaturadas: 9.9,
+            hidratosCarbono: 2,
+            azucares: 1.4,
+            proteinas: 1.9
+        }
+    },
+    {
         name: "Crema cacahuete",
         image: cremaCacahuete,
-        type: "protein",
+        type: "fat",
         link: "https://www.amazon.es/Crema-cacahuete-Capit%C3%A1n-cacahuetes-tostados/dp/B08MW9VNH7",
         nutrition: {
             energia: 587,

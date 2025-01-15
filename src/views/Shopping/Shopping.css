@@ -41,14 +41,12 @@
     position: absolute;
     top: 10px;
     left: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: white;
-    font-weight: 600;
+    justify-content: center;
 }
 
 .product-tag[data-type="protein"] {
@@ -56,17 +54,9 @@
     border: 2px solid #804646;
 }
 
-.product-tag[data-type="protein"] .product-tag-icon {
-    color: white;
-}
-
 .product-tag[data-type="carbohydrate"] {
     background-color: #ceb470;
     border: 2px solid #9f7d27;
-}
-
-.product-tag[data-type="carbohydrate"] .product-tag-icon {
-    color: white;
 }
 
 .product-tag[data-type="vegetable"] {
@@ -74,12 +64,14 @@
     border: 2px solid #43691d;
 }
 
-.product-tag[data-type="vegetable"] .product-tag-icon {
-    color: white;
+.product-tag[data-type="fat"] {
+    background-color: #ffd166;
+    border: 2px solid #cc9933;
 }
 
 .product-tag-icon {
     font-size: 1rem;
+    color: white;
 }
 
 .nutrition-table {

@@ -4,14 +4,16 @@ import {
     faExternalLink,
     faDrumstickBite,
     faBreadSlice,
+    faFire,
     faCarrot
 } from '@fortawesome/free-solid-svg-icons';
 import LinkButton from '../../components/LinkButton/LinkButton';
 import Table, { TableRow } from '../../components/Table/Table';
 import './Shopping.css';
 import { products } from '../../data/products';
+import FilterButton from '../../components/FilterButton/FilterButton';
 
-type ProductType = 'all' | 'vegetable' | 'carbohydrate' | 'protein';
+type ProductType = 'all' | 'protein' | 'vegetable' | 'carbohydrate' | 'fat';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
     const shuffled = [...array];
@@ -39,6 +41,8 @@ const Shopping = () => {
                 return faBreadSlice;
             case 'vegetable':
                 return faCarrot;
+            case 'fat':
+                return faFire;
             default:
                 return faBreadSlice;
         }
@@ -76,34 +80,28 @@ const Shopping = () => {
         return <Table headers={headers} rows={rows} />;
     };
 
+    const filterButtons = [
+        { type: 'all' as const, label: 'Ver todos' },
+        { type: 'protein' as const, label: 'Proteínas' },
+        { type: 'vegetable' as const, label: 'Vegetales' },
+        { type: 'carbohydrate' as const, label: 'Carbohidratos' },
+        { type: 'fat' as const, label: 'Grasas buenas' }
+    ];
+
     return (
         <div className="shopping-container">
             <h1 className="shopping-title">Shopping</h1>
             <div className="filter-menu">
-                <button
-                    className={`filter-button ${selectedType === 'all' ? 'active' : ''}`}
-                    onClick={() => setSelectedType('all')}
-                >
-                    Ver todos
-                </button>
-                <button
-                    className={`filter-button ${selectedType === 'vegetable' ? 'active' : ''}`}
-                    onClick={() => setSelectedType('vegetable')}
-                >
-                    Vegetales
-                </button>
-                <button
-                    className={`filter-button ${selectedType === 'carbohydrate' ? 'active' : ''}`}
-                    onClick={() => setSelectedType('carbohydrate')}
-                >
-                    Carbohidratos
-                </button>
-                <button
-                    className={`filter-button ${selectedType === 'protein' ? 'active' : ''}`}
-                    onClick={() => setSelectedType('protein')}
-                >
-                    Proteínas
-                </button>
+                {filterButtons.map(({ type, label }) => (
+                    <FilterButton
+                        key={type}
+                        type={type}
+                        selectedType={selectedType}
+                        onClick={() => setSelectedType(type)}
+                    >
+                        {label}
+                    </FilterButton>
+                ))}
             </div>
             <div className="product-grid">
                 {filteredProducts.map((product, index) => (
@@ -113,7 +111,6 @@ const Shopping = () => {
                                 icon={getTypeIcon(product.type)}
                                 className="product-tag-icon"
                             />
-                            <span>{product.type}</span>
                         </div>
                         <img src={product.image} alt={product.name} />
                         <h3>{product.name}</h3>

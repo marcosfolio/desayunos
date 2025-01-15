@@ -1,0 +1,27 @@
+.filter-button {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--main-text-color);
+    border-radius: 20px;
+    background: none;
+    color: var(--main-text-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: var(--main-text-color);
+    color: white;
+}
+
+.filter-button.active {
+    background-color: var(--main-text-color);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .filter-button {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}

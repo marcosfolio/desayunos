@@ -28,7 +28,6 @@ const MenuComposer = () => {
     const [selectedDinnerProtein, setSelectedDinnerProtein] = useState('');
     const [selectedDinnerCarb, setSelectedDinnerCarb] = useState('');
     const [selectedDinnerVegetable, setSelectedDinnerVegetable] = useState('');
-    const [menuPhrase, setMenuPhrase] = useState('');
     const [noCarbs, setNoCarbs] = useState(false);
     const [lunchPhrase, setLunchPhrase] = useState('');
     const [dinnerPhrase, setDinnerPhrase] = useState('');
