@@ -3,7 +3,7 @@ import './Table.css';
 
 export interface TableRow {
     cells: ReactNode[];
-    type?: 'regular' | 'success' | 'warning';
+    type?: 'regular' | 'success' | 'warning' | 'danger';
 }
 
 interface TableProps {

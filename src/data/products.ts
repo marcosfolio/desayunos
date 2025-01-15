@@ -15,6 +15,8 @@ import requeson from '../assets/images/requeson.jpg';
 import atunClaroNatural from '../assets/images/atun_claro_al_natural.jpg';
 import melvaAceiteOliva from '../assets/images/melva_aceite_oliva.jpg';
 import rucula from '../assets/images/rucula.jpg';
+import yogurGriegoNatural from '../assets/images/yogur_griego_natural.jpg';
+
 interface NutritionInfo {
     energia: number;
     grasas: number;
@@ -155,6 +157,21 @@ export const products: Product[] = [
         }
     },
     {
+        name: "Yogur griego natural",
+        image: yogurGriegoNatural,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/20512/yogur-griego-natural-hacendado-bote",
+        nutrition: {
+            energia: 129,
+            grasas: 10.8,
+            grasasSaturadas: 6.7,
+            grasasInsaturadas: 4.1,
+            hidratosCarbono: 3.9,
+            azucares: 3.9,
+            proteinas: 3.9
+        }
+    },
+    {
         name: "Lomo de pavo",
         image: lomoPavo,
         type: "protein",
@@ -178,7 +195,7 @@ export const products: Product[] = [
             energia: 79,
             grasas: 0.6,
             grasasSaturadas: 0.2,
-            grasasInsaturadas: 3,
+            grasasInsaturadas: 0.4,
             hidratosCarbono: 0,
             azucares: 0,
             proteinas: 18

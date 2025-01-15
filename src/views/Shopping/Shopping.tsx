@@ -63,7 +63,9 @@ const Shopping = () => {
             { cells: ['Grasas', `${nutrition.grasas} g`], type: 'regular' },
             {
                 cells: ['Grasas saturadas', `${nutrition.grasasSaturadas} g`],
-                type: 'warning'
+                type: nutrition.grasasSaturadas === 0 ? 'success' :
+                    nutrition.grasasSaturadas > 5 ? 'danger' :
+                        'warning'
             },
             {
                 cells: ['Grasas insaturadas', `${nutrition.grasasInsaturadas} g`],
@@ -72,7 +74,9 @@ const Shopping = () => {
             { cells: ['Hidratos de carbono', `${nutrition.hidratosCarbono} g`], type: 'regular' },
             {
                 cells: ['Azúcares', `${nutrition.azucares} g`],
-                type: 'warning'
+                type: nutrition.azucares === 0 ? 'success' :
+                    nutrition.azucares > 5 ? 'danger' :
+                        'warning'
             },
             { cells: ['Proteínas', `${nutrition.proteinas} g`], type: 'regular' }
         ];
