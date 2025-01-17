@@ -109,15 +109,22 @@ const Shopping = () => {
             </div>
             <div className="product-grid">
                 {filteredProducts.map((product, index) => (
-                    <div key={index} className="product-card">
+                    <div key={product.id} className="product-card">
                         <div className="product-tag" data-type={product.type}>
                             <FontAwesomeIcon
                                 icon={getTypeIcon(product.type)}
                                 className="product-tag-icon"
                             />
                         </div>
-                        <img src={product.image} alt={product.name} />
                         <h3>{product.name}</h3>
+                        <img src={product.image} alt={product.name} />
+                        <div className="meal-tags">
+                            {product.typeOfMeal.map((meal, index) => (
+                                <span key={index} className="meal-tag">
+                                    {meal}
+                                </span>
+                            ))}
+                        </div>
                         {product.nutrition && (
                             <div className="nutrition-table">
                                 <h4>Tabla nutricional por 100g</h4>

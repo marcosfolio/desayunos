@@ -23,6 +23,7 @@
 .table th:last-child,
 .table td:last-child {
     width: 40%;
+    text-align: right;
 }
 
 .table th {

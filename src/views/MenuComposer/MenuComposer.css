@@ -1,10 +1,173 @@
 .menu-composer-container {
-    padding: 20px;
-    max-width: 800px;
+    padding: 2rem;
+}
+
+.menu-section {
+    margin-bottom: 3rem;
+}
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.menu-header h2 {
+    font-family: "Cooper", sans-serif;
+    color: #333;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.generate-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--main-text-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.generate-button:hover {
+    opacity: 0.9;
+}
+
+/* Reuse product grid and card styles from Shopping.css */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.menu-composer-title {
+.product-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card img {
+    height: 200px;
+    border-radius: 4px;
+}
+
+.product-card h3 {
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.product-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-tag[data-type="protein"] {
+    background-color: #f09c8e;
+    border: 2px solid #804646;
+}
+
+.product-tag[data-type="carbohydrate"] {
+    background-color: #ceb470;
+    border: 2px solid #9f7d27;
+}
+
+.product-tag[data-type="vegetable"] {
+    background-color: #90be6d;
+    border: 2px solid #43691d;
+}
+
+.product-tag[data-type="fat"] {
+    background-color: #ffd166;
+    border: 2px solid #cc9933;
+}
+
+.product-tag-icon {
+    font-size: 1rem;
+    color: white;
+}
+
+.meal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.meal-tag {
+    background-color: #f0f0f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.rotating {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.product-card.generating {
+    animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.generate-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.menu-section h1 {
     font-family: "Cooper", sans-serif;
     color: #333;
     font-size: 2rem;
@@ -12,158 +175,45 @@
     text-align: center;
 }
 
-.select-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.selects-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.select-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.select-group label {
-    font-weight: 500;
-    color: #333;
-}
-
-.select-group select {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: white;
-}
-
-.generate-menu-btn {
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
+.menu-description {
+    text-align: center;
+    margin-top: 1rem;
+    color: #666;
     font-size: 1.1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.generate-menu-btn:hover {
-    background-color: #45a049;
+.calories-info {
+    margin-top: 1rem;
+    text-align: center;
+    color: #333;
+    font-size: 1.2rem;
 }
 
-.generate-menu-btn:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+.calories-number {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--main-text-color);
 }
 
-.menu-phrase {
+.nutrition-table {
     margin-top: 2rem;
     padding: 1.5rem;
-    background-color: #f8f8f8;
-    border-radius: 4px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.nutrition-table h4 {
+    margin: 0 0 1rem;
     text-align: center;
-    font-size: 1.2rem;
     color: #333;
-}
-
-@media (min-width: 768px) {
-    .select-container {
-        flex-direction: row;
-        gap: 2rem;
-    }
-
-    .select-group {
-        flex: 1;
-    }
-}
-
-.menu-header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-}
-
-input:checked+.slider {
-    background-color: #4CAF50;
-}
-
-input:checked+.slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-.meal-title {
-    font-family: "Cooper", sans-serif;
-    color: var(--main-text-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    text-align: left;
-}
-
-.buttons-container {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.buttons-container .generate-menu-btn {
-    flex: 1;
-}
-
-.menu-phrases {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.menu-phrase h3 {
-    color: var(--main-text-color);
-    margin-bottom: 0.5rem;
     font-size: 1.1rem;
 }
 
-@media (max-width: 768px) {
-    .buttons-container {
-        flex-direction: column;
-    }
+.goals-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }

@@ -16,6 +16,9 @@ import atunClaroNatural from '../assets/images/atun_claro_al_natural.jpg';
 import melvaAceiteOliva from '../assets/images/melva_aceite_oliva.jpg';
 import rucula from '../assets/images/rucula.jpg';
 import yogurGriegoNatural from '../assets/images/yogur_griego_natural.jpg';
+import naranjas from '../assets/images/naranjas.jpg';
+import manzanaGolden from '../assets/images/manzana_golden.jpg';
+import pechugaPavoNoventaidos from '../assets/images/pechuga_de_pavo_92.jpg';
 
 interface NutritionInfo {
     energia: number;
@@ -27,11 +30,14 @@ interface NutritionInfo {
     proteinas: number;
 }
 
+type TypeOfMeal = 'desayuno' | 'almuerzo' | 'comida' | 'merienda' | 'cena';
+
 interface Product {
     name: string;
     image: string;
     link: string;
     type: string;
+    typeOfMeal: TypeOfMeal[];
     nutrition: NutritionInfo;
 }
 
@@ -41,6 +47,7 @@ export const products: Product[] = [
         image: panDextrinadoLino,
         type: "carbohydrate",
         link: "https://www.amazon.es/Dextrin-Semillas-Lino-Santiveri-300/dp/B00DN9PEVA",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
         nutrition: {
             energia: 366,
             grasas: 5,
@@ -56,6 +63,7 @@ export const products: Product[] = [
         image: panDextrinado,
         type: "carbohydrate",
         link: "https://www.amazon.es/SANTIVERI-Pan-Dextrin-Tradicional-Gramos/dp/B00DN9JXEY",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
         nutrition: {
             energia: 366,
             grasas: 3.5,
@@ -71,6 +79,7 @@ export const products: Product[] = [
         image: panFibraSesamo,
         type: "carbohydrate",
         link: "https://tienda.mercadona.es/product/82655/pan-fibra-sesamo-hacendado-paquete",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
         nutrition: {
             energia: 391,
             grasas: 7.6,
@@ -86,6 +95,7 @@ export const products: Product[] = [
         image: pepinillosPequenos,
         type: "vegetable",
         link: "https://tienda.mercadona.es/product/29540/pepinillos-pequenos-hacendado-tarro",
+        typeOfMeal: ['comida', 'cena'],
         nutrition: {
             energia: 17,
             grasas: 0,
@@ -101,6 +111,7 @@ export const products: Product[] = [
         image: rucula,
         type: "vegetable",
         link: "https://tienda.mercadona.es/product/69753/rucula-paquete",
+        typeOfMeal: ['comida', 'cena'],
         nutrition: {
             energia: 26,
             grasas: 0,
@@ -116,6 +127,7 @@ export const products: Product[] = [
         image: brocoliMicrohondas,
         type: "vegetable",
         link: "https://tienda.mercadona.es/product/69622/floretas-brocoli-microondas-paquete",
+        typeOfMeal: ['comida', 'cena'],
         nutrition: {
             energia: 46,
             grasas: 0,
@@ -131,6 +143,7 @@ export const products: Product[] = [
         image: tomatesDulcita,
         type: "vegetable",
         link: "https://tienda.mercadona.es/product/69622/floretas-brocoli-microondas-paquete",
+        typeOfMeal: ['desayuno', 'comida', 'cena'],
         nutrition: {
             energia: 33,
             grasas: 0,
@@ -142,18 +155,51 @@ export const products: Product[] = [
         }
     },
     {
+        name: "Naranjas",
+        image: naranjas,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/3485/naranjas-malla",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 33,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 4.7,
+            azucares: 4.6,
+            proteinas: 1.4
+        }
+    },
+    {
+        name: "Manzana golden",
+        image: manzanaGolden,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/3485/naranjas-malla",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 50,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 13,
+            azucares: 10,
+            proteinas: 0.2
+        }
+    },
+    {
         name: "Yogur proteico fresa",
         image: yogurProteicoFresa,
         type: "protein",
         link: "https://tienda.mercadona.es/product/20996/postre-lacteo-con-fresa-proteinas-hacendado-0-mg-10-g-proteinas-pack-4",
+        typeOfMeal: ['almuerzo', 'merienda'],
         nutrition: {
-            energia: 53,
+            energia: 42,
             grasas: 0,
             grasasSaturadas: 0,
             grasasInsaturadas: 0,
-            hidratosCarbono: 5,
-            azucares: 4.6,
-            proteinas: 8.3
+            hidratosCarbono: 8.6,
+            azucares: 8.6,
+            proteinas: 0.8
         }
     },
     {
@@ -161,6 +207,7 @@ export const products: Product[] = [
         image: yogurGriegoNatural,
         type: "protein",
         link: "https://tienda.mercadona.es/product/20512/yogur-griego-natural-hacendado-bote",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
         nutrition: {
             energia: 129,
             grasas: 10.8,
@@ -176,6 +223,7 @@ export const products: Product[] = [
         image: lomoPavo,
         type: "protein",
         link: "https://tienda.mercadona.es/product/59138/lomo-pavo-hacendado-lonchas-pack-4",
+        typeOfMeal: ['almuerzo', 'merienda'],
         nutrition: {
             energia: 215,
             grasas: 5.8,
@@ -191,6 +239,7 @@ export const products: Product[] = [
         image: atunClaroNatural,
         type: "protein",
         link: "https://tienda.mercadona.es/product/18018/atun-claro-natural-hacendado",
+        typeOfMeal: ['comida', 'cena'],
         nutrition: {
             energia: 79,
             grasas: 0.6,
@@ -206,6 +255,7 @@ export const products: Product[] = [
         image: melvaAceiteOliva,
         type: "protein",
         link: "https://tienda.mercadona.es/product/18107/filetes-melva-aceite-oliva-hacendado-lata",
+        typeOfMeal: ['comida', 'cena'],
         nutrition: {
             energia: 298,
             grasas: 24,
@@ -221,6 +271,7 @@ export const products: Product[] = [
         image: cottageCheese,
         type: "protein",
         link: "https://tienda.mercadona.es/product/60963/queso-fresco-cottage-semidesnatado-vaca-hacendado-tarrina",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
         nutrition: {
             energia: 99,
             grasas: 4,
@@ -236,6 +287,7 @@ export const products: Product[] = [
         image: requeson,
         type: "protein",
         link: "https://tienda.mercadona.es/product/51012/requeson-mezcla-montesinos-tarrina",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
         nutrition: {
             energia: 160,
             grasas: 11.6,
@@ -251,6 +303,7 @@ export const products: Product[] = [
         image: clarasHuevo,
         type: "protein",
         link: "https://tienda.mercadona.es/product/31312/claras-huevo-liquidas-pasteurizadas-botella",
+        typeOfMeal: ['desayuno'],
         nutrition: {
             energia: 42,
             grasas: 0,
@@ -262,10 +315,27 @@ export const products: Product[] = [
         }
     },
     {
+        name: "Pechuga de pavo 92%",
+        image: pechugaPavoNoventaidos,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/5710/pechuga-pavo-92-hacendado-lonchas-paquete",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 89,
+            grasas: 1.3,
+            grasasSaturadas: 0.5,
+            grasasInsaturadas: 0.7,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 19.5
+        }
+    },
+    {
         name: "Nueces naturales",
         image: nuecesNaturales,
         type: "fat",
         link: "https://tienda.mercadona.es/product/34024/nuez-natural-hacendado-pelada-paquete",
+        typeOfMeal: ['almuerzo', 'merienda'],
         nutrition: {
             energia: 716,
             grasas: 69.6,
@@ -281,6 +351,7 @@ export const products: Product[] = [
         image: guacamole,
         type: "fat",
         link: "https://tienda.mercadona.es/product/3840/guacamole-hacendado-95-aguacate-fresco-tarrina",
+        typeOfMeal: ['almuerzo', 'merienda'],
         nutrition: {
             energia: 149,
             grasas: 13.7,
@@ -296,6 +367,7 @@ export const products: Product[] = [
         image: cremaCacahuete,
         type: "fat",
         link: "https://www.amazon.es/Crema-cacahuete-Capit%C3%A1n-cacahuetes-tostados/dp/B08MW9VNH7",
+        typeOfMeal: ['almuerzo', 'merienda'],
         nutrition: {
             energia: 587,
             grasas: 49.66,
