@@ -18,12 +18,14 @@ type Goal = 'perder' | 'energia';
 
 const MenuComposer = () => {
     const [breakfastMenu, setBreakfastMenu] = useState<typeof products>([]);
+    const [dinnerMenu, setDinnerMenu] = useState<typeof products>([]);
     const [isGenerating, setIsGenerating] = useState(false);
+    const [isGeneratingDinner, setIsGeneratingDinner] = useState(false);
     const [goal, setGoal] = useState<Goal>('perder');
 
-    // Generate initial menu on component mount
     useEffect(() => {
         generateInitialBreakfast();
+        generateInitialDinner();
     }, []);
 
     const generateInitialBreakfast = () => {
@@ -65,6 +67,41 @@ const MenuComposer = () => {
             clearInterval(animationInterval);
             setBreakfastMenu(generateMenuItems());
             setIsGenerating(false);
+        }, 1000);
+    };
+
+    const generateInitialDinner = () => {
+        const initialMenu = generateDinnerItems();
+        setDinnerMenu(initialMenu);
+    };
+
+    const generateDinnerItems = () => {
+        const proteins = products.filter(product =>
+            product.type === 'protein' &&
+            product.typeOfMeal.includes('cena')
+        );
+        const vegetables = products.filter(product =>
+            product.type === 'vegetable' &&
+            product.typeOfMeal.includes('cena')
+        );
+
+        const randomProtein = proteins[Math.floor(Math.random() * proteins.length)];
+        const randomVegetable = vegetables[Math.floor(Math.random() * vegetables.length)];
+
+        return [randomProtein, randomVegetable].filter(Boolean);
+    };
+
+    const generateDinner = () => {
+        setIsGeneratingDinner(true);
+
+        const animationInterval = setInterval(() => {
+            setDinnerMenu(generateDinnerItems());
+        }, 100);
+
+        setTimeout(() => {
+            clearInterval(animationInterval);
+            setDinnerMenu(generateDinnerItems());
+            setIsGeneratingDinner(false);
         }, 1000);
     };
 
@@ -110,6 +147,47 @@ const MenuComposer = () => {
         });
     };
 
+    const calculateDinnerNutrition = () => {
+        return dinnerMenu.reduce((total, product) => {
+            const multiplier =
+                product.type === 'protein' ? (goal === 'perder' ? 1.25 : 1.8) :
+                    product.type === 'vegetable' ? 1.8 : 0;
+
+            return {
+                energia: total.energia + (product.nutrition.energia * multiplier),
+                grasas: total.grasas + (product.nutrition.grasas * multiplier),
+                grasasSaturadas: total.grasasSaturadas + (product.nutrition.grasasSaturadas * multiplier),
+                grasasInsaturadas: total.grasasInsaturadas + (product.nutrition.grasasInsaturadas * multiplier),
+                hidratosCarbono: total.hidratosCarbono + (product.nutrition.hidratosCarbono * multiplier),
+                azucares: total.azucares + (product.nutrition.azucares * multiplier),
+                proteinas: total.proteinas + (product.nutrition.proteinas * multiplier),
+            };
+        }, {
+            energia: 0,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 0,
+        });
+    };
+
+    const calculateTotalDayNutrition = () => {
+        const breakfast = calculateTotalNutrition();
+        const dinner = calculateDinnerNutrition();
+
+        return {
+            energia: breakfast.energia + dinner.energia,
+            grasas: breakfast.grasas + dinner.grasas,
+            grasasSaturadas: breakfast.grasasSaturadas + dinner.grasasSaturadas,
+            grasasInsaturadas: breakfast.grasasInsaturadas + dinner.grasasInsaturadas,
+            hidratosCarbono: breakfast.hidratosCarbono + dinner.hidratosCarbono,
+            azucares: breakfast.azucares + dinner.azucares,
+            proteinas: breakfast.proteinas + dinner.proteinas,
+        };
+    };
+
     const getNutritionTable = (nutrition: ReturnType<typeof calculateTotalNutrition>) => {
         const headers = ['Nutriente', 'Cantidad'];
         const rows: TableRow[] = [
@@ -140,24 +218,24 @@ const MenuComposer = () => {
 
     return (
         <div className="menu-composer-container">
+            <div className="goals-filter">
+                <FilterButton
+                    type="perder"
+                    selectedType={goal}
+                    onClick={() => setGoal('perder')}
+                >
+                    Perder peso
+                </FilterButton>
+                <FilterButton
+                    type="energia"
+                    selectedType={goal}
+                    onClick={() => setGoal('energia')}
+                >
+                    Ganar energía
+                </FilterButton>
+            </div>
             <section className="menu-section">
                 <h1>Desayuno</h1>
-                <div className="goals-filter">
-                    <FilterButton
-                        type="perder"
-                        selectedType={goal}
-                        onClick={() => setGoal('perder')}
-                    >
-                        Perder peso
-                    </FilterButton>
-                    <FilterButton
-                        type="energia"
-                        selectedType={goal}
-                        onClick={() => setGoal('energia')}
-                    >
-                        Ganar energía
-                    </FilterButton>
-                </div>
                 <div className="product-grid">
                     {breakfastMenu.map((product, index) => (
                         <div key={index} className={`product-card ${isGenerating ? 'generating' : ''}`}>
@@ -179,15 +257,15 @@ const MenuComposer = () => {
                         </div>
                     ))}
                 </div>
-                <div className="button-container">
-                    <button
-                        onClick={generateBreakfast}
-                        className={`generate-button ${isGenerating ? 'generating' : ''}`}
-                        disabled={isGenerating}
-                    >
-                        <FontAwesomeIcon icon={faRotate} className={isGenerating ? 'rotating' : ''} />
-                        Generar Desayuno
-                    </button>
+                <div className="button-container"><button
+                    onClick={generateBreakfast}
+                    className={`generate-button ${isGenerating ? 'generating' : ''}`}
+                    disabled={isGenerating}
+                >
+                    <FontAwesomeIcon icon={faRotate} className={isGenerating ? 'rotating' : ''} />
+                    Generar Desayuno
+                </button></div>
+                <div className="menu-container">
                     {breakfastMenu.length > 0 && !isGenerating && (
                         <>
                             <div className="menu-description">
@@ -231,6 +309,96 @@ const MenuComposer = () => {
                     )}
                 </div>
             </section>
+
+            <section className="menu-section">
+                <h1>Cena</h1>
+                <div className="product-grid">
+                    {dinnerMenu.map((product, index) => (
+                        <div key={index} className={`product-card ${isGeneratingDinner ? 'generating' : ''}`}>
+                            <div className="product-tag" data-type={product.type}>
+                                <FontAwesomeIcon
+                                    icon={getTypeIcon(product.type)}
+                                    className="product-tag-icon"
+                                />
+                            </div>
+                            <h3>{product.name}</h3>
+                            <img src={product.image} alt={product.name} />
+                            <LinkButton
+                                href={product.link}
+                                text={product.link.includes('mercadona') ? 'Comprar en Mercadona' : 'Comprar en Amazon'}
+                                icon={<FontAwesomeIcon icon={faExternalLink} />}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div className="button-container">
+                    <button
+                        onClick={generateDinner}
+                        className={`generate-button ${isGeneratingDinner ? 'generating' : ''}`}
+                        disabled={isGeneratingDinner}
+                    >
+                        <FontAwesomeIcon icon={faRotate} className={isGeneratingDinner ? 'rotating' : ''} />
+                        Generar Cena
+                    </button>
+                </div>
+                <div className="menu-container">
+                    {dinnerMenu.length > 0 && !isGeneratingDinner && (
+                        <>
+                            <div className="menu-description">
+                                {dinnerMenu.map((product, index) => {
+                                    if (product.type === 'protein') {
+                                        return <span key={index}>{goal === 'perder' ? '125' : '180'}gr de {product.name}</span>;
+                                    }
+                                    if (product.type === 'vegetable') {
+                                        return <span key={index}>{product.name}</span>;
+                                    }
+                                    return null;
+                                }).filter(Boolean).map((item, index, array) => (
+                                    <span key={`separator-${index}`} className='menu-description-item'>
+                                        {item}
+                                        {index < array.length - 1 && ' + '}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="calories-info">
+                                Número de calorías de esta cena:{' '}
+                                <span className="calories-number">
+                                    {Math.round(dinnerMenu.reduce((total, product) => {
+                                        const multiplier =
+                                            product.type === 'protein' ? (goal === 'perder' ? 1.25 : 1.8) :
+                                                product.type === 'vegetable' ? 1.8 : 0;
+                                        return total + (product.nutrition.energia * multiplier);
+                                    }, 0))} kcal
+                                </span>
+                            </div>
+                            <div className="nutrition-table">
+                                <h4>Tabla nutricional de la cena</h4>
+                                {getNutritionTable(calculateDinnerNutrition())}
+                            </div>
+                        </>
+                    )}
+                </div>
+            </section>
+
+            {breakfastMenu.length > 0 && dinnerMenu.length > 0 && !isGenerating && !isGeneratingDinner && (
+                <section className="menu-section">
+                    <h1>Total Nutricional del Día</h1>
+                    <div className="menu-container">
+                        <div className="calories-info">
+                            Calorías totales del día:{' '}
+                            <span className="calories-number">
+                                {Math.round(calculateTotalDayNutrition().energia)} kcal
+                            </span>
+                        </div>
+                        <div className="nutrition-table">
+                            <h4>Tabla nutricional total del día</h4>
+                            {getNutritionTable(calculateTotalDayNutrition())}
+                        </div>
+                    </div>
+                </section>
+            )}
         </div>
     );
 };

@@ -17,19 +17,19 @@ describe('HeaderMenu', () => {
     it('renders all navigation links', () => {
         renderHeader();
 
-        expect(screen.getByText('Home')).toBeInTheDocument();
-        expect(screen.getByText('Food & Portions')).toBeInTheDocument();
-        expect(screen.getByText('Menu Composer')).toBeInTheDocument();
-        expect(screen.getByText('Shopping')).toBeInTheDocument();
+        expect(screen.getByText('Inicio')).toBeInTheDocument();
+        expect(screen.getByText('La compra saludable')).toBeInTheDocument();
+        expect(screen.getByText('Creador de menús')).toBeInTheDocument();
+        expect(screen.getByText('¿Cómo comer?')).toBeInTheDocument();
     });
 
     it('renders links with correct paths', () => {
         renderHeader();
 
-        expect(screen.getByText('Home').closest('a')).toHaveAttribute('href', '/');
-        expect(screen.getByText('Food & Portions').closest('a')).toHaveAttribute('href', '/food-and-portions');
-        expect(screen.getByText('Menu Composer').closest('a')).toHaveAttribute('href', '/menu-composer');
-        expect(screen.getByText('Shopping').closest('a')).toHaveAttribute('href', '/shopping');
+        expect(screen.getByText('Inicio').closest('a')).toHaveAttribute('href', '/');
+        expect(screen.getByText('La compra saludable').closest('a')).toHaveAttribute('href', '/shopping');
+        expect(screen.getByText('Creador de menús').closest('a')).toHaveAttribute('href', '/menu-composer');
+        expect(screen.getByText('¿Cómo comer?').closest('a')).toHaveAttribute('href', '/food-and-portions');
     });
 
     it('has correct structure and styling', () => {

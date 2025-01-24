@@ -102,3 +102,138 @@
         line-height: 24px;
     }
 }
+
+.products-section {
+    margin: 4rem auto;
+    padding: 2rem;
+    max-width: 1400px;
+}
+
+.products-section h2 {
+    font-family: "Cooper", sans-serif;
+    color: #333;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.carousel-products {
+    display: flex;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    gap: 2rem;
+}
+
+.carousel-product {
+    flex: 0 0 calc(25% - 1.5rem);
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.carousel-product:hover {
+    transform: translateY(-5px);
+}
+
+.carousel-product img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.carousel-product h3 {
+    color: #333;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    height: 2.4em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.product-nutrition {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.carousel-button {
+    background: var(--main-text-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+}
+
+.carousel-button:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 1200px) {
+    .carousel-product {
+        flex: 0 0 calc(33.33% - 1.33rem);
+    }
+}
+
+@media (max-width: 992px) {
+    .carousel-product {
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-product {
+        flex: 0 0 100%;
+    }
+
+    .carousel-product img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-products {
+        max-width: 400px;
+    }
+
+    .carousel-product {
+        flex: 0 0 100%;
+    }
+}

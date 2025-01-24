@@ -14,6 +14,7 @@ import { products } from '../../data/products';
 import FilterButton from '../../components/FilterButton/FilterButton';
 
 type ProductType = 'all' | 'protein' | 'vegetable' | 'carbohydrate' | 'fat';
+type SortOrder = 'none' | 'highKcal' | 'lowKcal';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
     const shuffled = [...array];
@@ -26,12 +27,24 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 
 const Shopping = () => {
     const [selectedType, setSelectedType] = useState<ProductType>('all');
+    const [sortOrder, setSortOrder] = useState<SortOrder>('none');
 
     const shuffledProducts = useMemo(() => shuffleArray(products), []);
 
-    const filteredProducts = shuffledProducts.filter(product =>
-        selectedType === 'all' ? true : product.type === selectedType
-    );
+    const filteredProducts = useMemo(() => {
+        let filtered = shuffledProducts.filter(product =>
+            selectedType === 'all' ? true : product.type === selectedType
+        );
+
+        if (sortOrder !== 'none') {
+            filtered = [...filtered].sort((a, b) => {
+                const comparison = a.nutrition.energia - b.nutrition.energia;
+                return sortOrder === 'highKcal' ? -comparison : comparison;
+            });
+        }
+
+        return filtered;
+    }, [shuffledProducts, selectedType, sortOrder]);
 
     const getTypeIcon = (type: string) => {
         switch (type) {
@@ -94,18 +107,33 @@ const Shopping = () => {
 
     return (
         <div className="shopping-container">
-            <h1 className="shopping-title">Shopping</h1>
-            <div className="filter-menu">
-                {filterButtons.map(({ type, label }) => (
-                    <FilterButton
-                        key={type}
-                        type={type}
-                        selectedType={selectedType}
-                        onClick={() => setSelectedType(type)}
+            <h1 className="shopping-title">La compra saludable</h1>
+            <div className="filter-controls">
+                <div className="filter-menu">
+                    {filterButtons.map(({ type, label }) => (
+                        <FilterButton
+                            key={type}
+                            type={type}
+                            selectedType={selectedType}
+                            onClick={() => setSelectedType(type)}
+                        >
+                            {label}
+                        </FilterButton>
+                    ))}
+                </div>
+            </div>
+            <div className="sort-container">
+                <div className="sort-menu">
+                    <select
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value as SortOrder)}
+                        className="sort-select"
                     >
-                        {label}
-                    </FilterButton>
-                ))}
+                        <option value="none">Ordenar por:</option>
+                        <option value="lowKcal">Menos calorías</option>
+                        <option value="highKcal">Más calorías</option>
+                    </select>
+                </div>
             </div>
             <div className="product-grid">
                 {filteredProducts.map((product, index) => (

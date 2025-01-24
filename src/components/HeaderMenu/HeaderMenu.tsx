@@ -7,16 +7,16 @@ const HeaderMenu = () => {
         <nav className="header-menu">
             <ul className="menu-list">
                 <li>
-                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/">Inicio</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/menu-composer">Menu Composer</NavLink>
+                    <NavLink to="/shopping">La compra saludable</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/food-and-portions">Food & Portions</NavLink>
+                    <NavLink to="/menu-composer">Creador de menús</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/shopping">Shopping</NavLink>
+                    <NavLink to="/food-and-portions">¿Cómo comer?</NavLink>
                 </li>
             </ul>
         </nav>

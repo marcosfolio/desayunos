@@ -19,6 +19,11 @@ import yogurGriegoNatural from '../assets/images/yogur_griego_natural.jpg';
 import naranjas from '../assets/images/naranjas.jpg';
 import manzanaGolden from '../assets/images/manzana_golden.jpg';
 import pechugaPavoNoventaidos from '../assets/images/pechuga_de_pavo_92.jpg';
+import quesoFrescoBatido from '../assets/images/queso_fresco_batido.jpg';
+import salvadoAvena500 from '../assets/images/salvado_avena_500.jpg';
+import pan100Integral from '../assets/images/pan_100_integral.jpg';
+import pastaPenneRigateIntegral from '../assets/images/pasta_penne_rigate_integral.jpg';
+import pinaNaturalRodajas from '../assets/images/pina_natural_rodajas.jpg';
 
 interface NutritionInfo {
     energia: number;
@@ -88,6 +93,54 @@ export const products: Product[] = [
             hidratosCarbono: 60.1,
             azucares: 3,
             proteinas: 13
+        }
+    },
+    {
+        name: "Salvado de avena 500gr",
+        image: salvadoAvena500,
+        type: "carbohydrate",
+        link: "https://www.amazon.es/INT-SALIM-SALVADO-AVENA-500-1/dp/B00DN9J1CI/ref=sr_1_3?dib=eyJ2IjoiMSJ9.9EKEgFXbbWYdGuu9Cv9q1eCobeS0TfV7k8Q7ajZnBK_0AXiYIHgSs3y7YYjSieZb4AgGRbyLWrW-b_rrZSz4tYoXr31VsxBpTQKAWXZvHOW-c0IcQZ8Lww5QENNAK01o05smV2KxUIwOZEgRgHZMCzwSnSHyOJPkkKlhuDvM2i2p58VUpk9GPK_C66xy83B22Auhsl_K4KDYmls8qTP2kb0HPdoWn6au9Kk5d-rG0Hdg8--41YCYxWgmNdJcYQviajDYcMk-jYxceGU7xWL61dXM0hGV6u_f2vl5icmPKEb2up93naEocinVdMuijC-Bx0VkJzYhJL6vrBcMUMIMSv47UAT3GJVSdURWzpyQO6b6putuk39h-jVOL3i867s9WWcTHcxXs3wSHD9SZh7xzoXDdW5vXxNnbVCkvu0Fcb85JpaGMpDbyH73GTwrskMi.-Jx-m_WvEmhvsJ53ZhiASfkqcTHwaxlSAJL85XzFh2k&dib_tag=se&keywords=salvado+de+avena&nsdOptOutParam=true&qid=1737461696&sr=8-3",
+        typeOfMeal: ['desayuno'],
+        nutrition: {
+            energia: 355,
+            grasas: 7.5,
+            grasasSaturadas: 1.3,
+            grasasInsaturadas: 6.2,
+            hidratosCarbono: 47.6,
+            azucares: 1.2,
+            proteinas: 15.7
+        }
+    },
+    {
+        name: "Pan 100% integral",
+        image: pan100Integral,
+        type: "carbohydrate",
+        link: "https://tienda.mercadona.es/product/60354/pan-integral-100-fino-paquete",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 223,
+            grasas: 2.5,
+            grasasSaturadas: 0.4,
+            grasasInsaturadas: 2.1,
+            hidratosCarbono: 38,
+            azucares: 0.9,
+            proteinas: 9.1
+        }
+    },
+    {
+        name: "Pasta penne rigate integral",
+        image: pastaPenneRigateIntegral,
+        type: "carbohydrate",
+        link: "https://tienda.mercadona.es/product/35777/pasta-penne-integral-hacendado-paquete",
+        typeOfMeal: ['comida', 'cena'],
+        nutrition: {
+            energia: 345,
+            grasas: 2.4,
+            grasasSaturadas: 0.5,
+            grasasInsaturadas: 1.9,
+            hidratosCarbono: 62,
+            azucares: 3.7,
+            proteinas: 13.5
         }
     },
     {
@@ -168,6 +221,22 @@ export const products: Product[] = [
             hidratosCarbono: 4.7,
             azucares: 4.6,
             proteinas: 1.4
+        }
+    },
+    {
+        name: "Piña natural en rodajas",
+        image: pinaNaturalRodajas,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/3024/pina-natural-rodajas-bote",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 58,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 14,
+            azucares: 10,
+            proteinas: 0.5
         }
     },
     {
@@ -280,6 +349,22 @@ export const products: Product[] = [
             hidratosCarbono: 1.7,
             azucares: 1.7,
             proteinas: 14
+        }
+    },
+    {
+        name: "Queso fresco batido",
+        image: quesoFrescoBatido,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/51071/queso-fresco-batido-desnatado-0-mg-hacendado-tarrina",
+        typeOfMeal: ['desayuno'],
+        nutrition: {
+            energia: 46,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 3.5,
+            azucares: 3.5,
+            proteinas: 8
         }
     },
     {
