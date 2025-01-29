@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { StaticRouter } from 'react-router-dom/server';
 import '@testing-library/jest-dom';
 import HeaderMenu from './HeaderMenu';
+import { MENU_ITEMS } from '../../helpers/menuItems';
 
 describe('HeaderMenu', () => {
     const renderHeader = (path = '/') => {
@@ -17,19 +18,23 @@ describe('HeaderMenu', () => {
     it('renders all navigation links', () => {
         renderHeader();
 
-        expect(screen.getByText('Inicio')).toBeInTheDocument();
-        expect(screen.getByText('La compra saludable')).toBeInTheDocument();
-        expect(screen.getByText('Creador de menús')).toBeInTheDocument();
-        expect(screen.getByText('¿Cómo comer?')).toBeInTheDocument();
+        expect(screen.getByText(MENU_ITEMS.HOME.es)).toBeInTheDocument();
+        expect(screen.getByText(MENU_ITEMS.SHOPPING.es)).toBeInTheDocument();
+        expect(screen.getByText(MENU_ITEMS.MENU_COMPOSER.es)).toBeInTheDocument();
+        expect(screen.getByText(MENU_ITEMS.FOOD_AND_PORTIONS.es)).toBeInTheDocument();
     });
 
     it('renders links with correct paths', () => {
         renderHeader();
 
-        expect(screen.getByText('Inicio').closest('a')).toHaveAttribute('href', '/');
-        expect(screen.getByText('La compra saludable').closest('a')).toHaveAttribute('href', '/shopping');
-        expect(screen.getByText('Creador de menús').closest('a')).toHaveAttribute('href', '/menu-composer');
-        expect(screen.getByText('¿Cómo comer?').closest('a')).toHaveAttribute('href', '/food-and-portions');
+        expect(screen.getByText(MENU_ITEMS.HOME.es).closest('a'))
+            .toHaveAttribute('href', MENU_ITEMS.HOME.path);
+        expect(screen.getByText(MENU_ITEMS.SHOPPING.es).closest('a'))
+            .toHaveAttribute('href', MENU_ITEMS.SHOPPING.path);
+        expect(screen.getByText(MENU_ITEMS.MENU_COMPOSER.es).closest('a'))
+            .toHaveAttribute('href', MENU_ITEMS.MENU_COMPOSER.path);
+        expect(screen.getByText(MENU_ITEMS.FOOD_AND_PORTIONS.es).closest('a'))
+            .toHaveAttribute('href', MENU_ITEMS.FOOD_AND_PORTIONS.path);
     });
 
     it('has correct structure and styling', () => {

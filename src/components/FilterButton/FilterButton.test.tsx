@@ -6,65 +6,53 @@ import '@testing-library/jest-dom';
 describe('FilterButton', () => {
     const mockOnClick = jest.fn();
 
+    const defaultProps = {
+        type: 'test-type',
+        selectedType: 'all',
+        onClick: mockOnClick,
+        children: 'Test Filter Button'
+    };
+
+    type FilterButtonProps = {
+        type: string;
+        selectedType: string;
+        onClick: (type: string) => void;
+        children?: React.ReactNode;
+    };
+
+    const renderFilterButton = (overrideProps: Partial<FilterButtonProps> = {}) => {
+        const props = { ...defaultProps, ...overrideProps };
+        return render(
+            <FilterButton {...props}>
+                {props.children}
+            </FilterButton>
+        );
+    };
+
     beforeEach(() => {
         mockOnClick.mockClear();
     });
 
     it('renders with correct text', () => {
-        render(
-            <FilterButton
-                type="protein"
-                selectedType="all"
-                onClick={mockOnClick}
-            >
-                Test Filter Button
-            </FilterButton>
-        );
-
-        expect(screen.getByText('Test Filter Button')).toBeInTheDocument();
+        renderFilterButton();
+        expect(screen.getByText(defaultProps.children)).toBeInTheDocument();
     });
 
-    it('has active class when type matches selectedType', () => {
-        render(
-            <FilterButton
-                type="protein"
-                selectedType="protein"
-                onClick={mockOnClick}
-            >
-                Test Filter Button
-            </FilterButton>
-        );
+    it('handles active state correctly', () => {
+        // Active case
+        const { unmount } = renderFilterButton({ selectedType: 'test-type' });
+        const activeButton = screen.getByRole('button');
+        expect(activeButton).toHaveClass('active');
+        unmount(); // <-- This line unmounts the first button
 
-        const button = screen.getByRole('button');
-        expect(button.classList.contains('active')).toBe(true);
-    });
-
-    it('does not have active class when type differs from selectedType', () => {
-        render(
-            <FilterButton
-                type="protein"
-                selectedType="all"
-                onClick={mockOnClick}
-            >
-                Test Filter Button
-            </FilterButton>
-        );
-
-        const button = screen.getByRole('button');
-        expect(button.classList.contains('active')).toBe(false);
+        // Inactive case
+        renderFilterButton({ selectedType: 'all' });
+        const inactiveButton = screen.getByRole('button');
+        expect(inactiveButton).not.toHaveClass('active');
     });
 
     it('calls onClick handler with correct type when clicked', () => {
-        render(
-            <FilterButton
-                type="test-type"
-                selectedType="all"
-                onClick={mockOnClick}
-            >
-                Test Filter Button
-            </FilterButton>
-        );
-
+        renderFilterButton({ type: 'test-type' });
         fireEvent.click(screen.getByRole('button'));
         expect(mockOnClick).toHaveBeenCalledWith('test-type');
         expect(mockOnClick).toHaveBeenCalledTimes(1);

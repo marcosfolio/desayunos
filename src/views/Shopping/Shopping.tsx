@@ -12,6 +12,7 @@ import Table, { TableRow } from '../../components/Table/Table';
 import './Shopping.css';
 import { products } from '../../data/products';
 import FilterButton from '../../components/FilterButton/FilterButton';
+import SelectInput from '../../components/SelectInput/SelectInput';
 
 type ProductType = 'all' | 'protein' | 'vegetable' | 'carbohydrate' | 'fat';
 type SortOrder = 'none' | 'highKcal' | 'lowKcal';
@@ -105,6 +106,12 @@ const Shopping = () => {
         { type: 'fat' as const, label: 'Grasas buenas' }
     ];
 
+    const sortOptions = [
+        { value: 'none', label: 'Ordenar por:' },
+        { value: 'lowKcal', label: 'Menos calorías' },
+        { value: 'highKcal', label: 'Más calorías' }
+    ];
+
     return (
         <div className="shopping-container">
             <h1 className="shopping-title">La compra saludable</h1>
@@ -124,20 +131,17 @@ const Shopping = () => {
             </div>
             <div className="sort-container">
                 <div className="sort-menu">
-                    <select
+                    <SelectInput
                         value={sortOrder}
-                        onChange={(e) => setSortOrder(e.target.value as SortOrder)}
+                        onChange={(value) => setSortOrder(value as SortOrder)}
+                        options={sortOptions}
                         className="sort-select"
-                    >
-                        <option value="none">Ordenar por:</option>
-                        <option value="lowKcal">Menos calorías</option>
-                        <option value="highKcal">Más calorías</option>
-                    </select>
+                    />
                 </div>
             </div>
             <div className="product-grid">
                 {filteredProducts.map((product, index) => (
-                    <div key={product.id} className="product-card">
+                    <div key={index} className="product-card">
                         <div className="product-tag" data-type={product.type}>
                             <FontAwesomeIcon
                                 icon={getTypeIcon(product.type)}
