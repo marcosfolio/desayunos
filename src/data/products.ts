@@ -24,6 +24,10 @@ import salvadoAvena500 from '../assets/images/salvado_avena_500.jpg';
 import pan100Integral from '../assets/images/pan_100_integral.jpg';
 import pastaPenneRigateIntegral from '../assets/images/pasta_penne_rigate_integral.jpg';
 import pinaNaturalRodajas from '../assets/images/pina_natural_rodajas.jpg';
+import polloAsadoHacendado from '../assets/images/pollo_asado_hacendado.jpg';
+import filetesPavoContramuslo from '../assets/images/filetes_pavo_contramuslo.jpg';
+import medallonesMerluzaHacendado from '../assets/images/medallones_merluza_ultracongelada_hacendado.jpg';
+import filetesBacalaoUltracongelado from '../assets/images/filetes_bacalao_ultracongelado.jpg';
 
 interface NutritionInfo {
     energia: number;
@@ -317,6 +321,70 @@ export const products: Product[] = [
             hidratosCarbono: 0,
             azucares: 0,
             proteinas: 18
+        }
+    },
+    {
+        name: "Pollo asado Hacendado",
+        image: polloAsadoHacendado,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/13706/pollo-asado-hacendado-paquete",
+        typeOfMeal: ['comida', 'cena'],
+        nutrition: {
+            energia: 183,
+            grasas: 10,
+            grasasSaturadas: 2.1,
+            grasasInsaturadas: 7.9,
+            hidratosCarbono: 0.8,
+            azucares: 0.5,
+            proteinas: 22
+        }
+    },
+    {
+        name: "Contramuslo de pavo",
+        image: filetesPavoContramuslo,
+        type: "protein",
+        link: "hhttps://tienda.mercadona.es/product/4109/filetes-pavo-contramuslo-bandeja",
+        typeOfMeal: ['comida', 'cena'],
+        nutrition: {
+            energia: 101,
+            grasas: 2.4,
+            grasasSaturadas: 1,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 20
+        }
+    },
+    {
+        name: "Medallones de merluza ultracongelada Hacendado",
+        image: medallonesMerluzaHacendado,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/62131/medallones-merluza-hacendado-ultracongelados-paquete",
+        typeOfMeal: ['comida', 'cena'],
+        nutrition: {
+            energia: 82,
+            grasas: 1.2,
+            grasasSaturadas: 0.3,
+            grasasInsaturadas: 0.9,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 18
+        }
+    },
+    {
+        name: "Filetes de bacalao ultracongelado",
+        image: filetesBacalaoUltracongelado,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/24016/filetes-bacalao-maredeus-ultracongelado-punto-sal-paquete",
+        typeOfMeal: ['comida', 'cena'],
+        nutrition: {
+            energia: 51,
+            grasas: 3,
+            grasasSaturadas: 0.2,
+            grasasInsaturadas: 2.8,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 14
         }
     },
     {

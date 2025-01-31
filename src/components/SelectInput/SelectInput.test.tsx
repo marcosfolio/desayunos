@@ -5,51 +5,58 @@ import SelectInput from './SelectInput';
 
 describe('SelectInput', () => {
     const mockOnChange = jest.fn();
-    const defaultProps = {
+    const generateOptions = (count: number) => {
+        return Array.from({ length: count }, (_, i) => ({
+            value: `option${i + 1}`,
+            label: `Option ${i + 1}`
+        }));
+    };
+
+    const createProps = (optionsCount = 2) => ({
         value: '',
         onChange: mockOnChange,
-        options: [
-            { value: 'option1', label: 'Option 1' },
-            { value: 'option2', label: 'Option 2' }
-        ],
+        options: generateOptions(optionsCount),
         className: 'test-select'
-    };
+    });
 
     beforeEach(() => {
         mockOnChange.mockClear();
     });
 
     it('renders all options', () => {
-        render(<SelectInput {...defaultProps} />);
-        
-        defaultProps.options.forEach(option => {
+        const props = createProps(3);
+        render(<SelectInput {...props} />);
+
+        props.options.forEach(option => {
             expect(screen.getByText(option.label)).toBeInTheDocument();
         });
     });
 
     it('applies custom className', () => {
-        render(<SelectInput {...defaultProps} />);
+        render(<SelectInput {...createProps()} />);
         expect(screen.getByRole('combobox')).toHaveClass('test-select');
     });
 
     it('calls onChange when selection changes', () => {
-        render(<SelectInput {...defaultProps} />);
-        
+        const props = createProps(4);
+        render(<SelectInput {...props} />);
+
         fireEvent.change(screen.getByRole('combobox'), {
-            target: { value: 'option2' }
+            target: { value: props.options[1].value }
         });
 
-        expect(mockOnChange).toHaveBeenCalledWith('option2');
+        expect(mockOnChange).toHaveBeenCalledWith(props.options[1].value);
     });
 
     it('shows selected value', () => {
+        const props = createProps(2);
         render(
-            <SelectInput 
-                {...defaultProps} 
-                value="option1"
+            <SelectInput
+                {...props}
+                value={props.options[0].value}
             />
         );
-        
-        expect(screen.getByRole('combobox')).toHaveValue('option1');
+
+        expect(screen.getByRole('combobox')).toHaveValue(props.options[0].value);
     });
 });

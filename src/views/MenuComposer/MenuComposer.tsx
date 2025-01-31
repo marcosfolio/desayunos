@@ -19,14 +19,24 @@ type Goal = 'perder' | 'energia';
 const MenuComposer = () => {
     const [breakfastMenu, setBreakfastMenu] = useState<typeof products>([]);
     const [dinnerMenu, setDinnerMenu] = useState<typeof products>([]);
+    const [lunchMenu, setLunchMenu] = useState<typeof products>([]);
     const [isGenerating, setIsGenerating] = useState(false);
     const [isGeneratingDinner, setIsGeneratingDinner] = useState(false);
+    const [isGeneratingLunch, setIsGeneratingLunch] = useState(false);
     const [goal, setGoal] = useState<Goal>('perder');
 
     useEffect(() => {
         generateInitialBreakfast();
+        generateInitialLunch();
         generateInitialDinner();
     }, []);
+
+    useEffect(() => {
+        // Regenerate all menus when goal changes
+        generateInitialBreakfast();
+        generateInitialLunch();
+        generateInitialDinner();
+    }, [goal]); // Add goal as dependency
 
     const generateInitialBreakfast = () => {
         const initialMenu = generateMenuItems();
@@ -105,6 +115,49 @@ const MenuComposer = () => {
         }, 1000);
     };
 
+    const generateInitialLunch = () => {
+        const initialMenu = generateLunchItems();
+        setLunchMenu(initialMenu);
+    };
+
+    const generateLunchItems = () => {
+        const proteins = products.filter(product =>
+            product.type === 'protein' &&
+            product.typeOfMeal.includes('comida')
+        );
+        const vegetables = products.filter(product =>
+            product.type === 'vegetable' &&
+            product.typeOfMeal.includes('comida')
+        );
+        const carbs = products.filter(product =>
+            product.type === 'carbohydrate' &&
+            product.typeOfMeal.includes('comida')
+        );
+
+        const randomProtein = proteins[Math.floor(Math.random() * proteins.length)];
+        const randomVegetable = vegetables[Math.floor(Math.random() * vegetables.length)];
+        const randomCarb = goal === 'energia' ? carbs[Math.floor(Math.random() * carbs.length)] : null;
+
+        // Return carbs first when goal is energia, otherwise protein first
+        return goal === 'energia'
+            ? [randomCarb, randomProtein, randomVegetable].filter(Boolean)
+            : [randomProtein, randomVegetable].filter(Boolean);
+    };
+
+    const generateLunch = () => {
+        setIsGeneratingLunch(true);
+
+        const animationInterval = setInterval(() => {
+            setLunchMenu(generateLunchItems());
+        }, 100);
+
+        setTimeout(() => {
+            clearInterval(animationInterval);
+            setLunchMenu(generateLunchItems());
+            setIsGeneratingLunch(false);
+        }, 1000);
+    };
+
     const getTypeIcon = (type: string) => {
         switch (type) {
             case 'protein':
@@ -173,18 +226,46 @@ const MenuComposer = () => {
         });
     };
 
+    const calculateLunchNutrition = () => {
+        return lunchMenu.reduce((total, product) => {
+            const multiplier =
+                product.type === 'protein' ? (goal === 'perder' ? 1.25 : 1.8) :
+                    product.type === 'carbohydrate' ? (goal === 'perder' ? 0.6 : 0.8) :
+                        product.type === 'vegetable' ? 1.8 : 0;
+
+            return {
+                energia: total.energia + (product.nutrition.energia * multiplier),
+                grasas: total.grasas + (product.nutrition.grasas * multiplier),
+                grasasSaturadas: total.grasasSaturadas + (product.nutrition.grasasSaturadas * multiplier),
+                grasasInsaturadas: total.grasasInsaturadas + (product.nutrition.grasasInsaturadas * multiplier),
+                hidratosCarbono: total.hidratosCarbono + (product.nutrition.hidratosCarbono * multiplier),
+                azucares: total.azucares + (product.nutrition.azucares * multiplier),
+                proteinas: total.proteinas + (product.nutrition.proteinas * multiplier),
+            };
+        }, {
+            energia: 0,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 0,
+            azucares: 0,
+            proteinas: 0,
+        });
+    };
+
     const calculateTotalDayNutrition = () => {
         const breakfast = calculateTotalNutrition();
+        const lunch = calculateLunchNutrition();
         const dinner = calculateDinnerNutrition();
 
         return {
-            energia: breakfast.energia + dinner.energia,
-            grasas: breakfast.grasas + dinner.grasas,
-            grasasSaturadas: breakfast.grasasSaturadas + dinner.grasasSaturadas,
-            grasasInsaturadas: breakfast.grasasInsaturadas + dinner.grasasInsaturadas,
-            hidratosCarbono: breakfast.hidratosCarbono + dinner.hidratosCarbono,
-            azucares: breakfast.azucares + dinner.azucares,
-            proteinas: breakfast.proteinas + dinner.proteinas,
+            energia: breakfast.energia + lunch.energia + dinner.energia,
+            grasas: breakfast.grasas + lunch.grasas + dinner.grasas,
+            grasasSaturadas: breakfast.grasasSaturadas + lunch.grasasSaturadas + dinner.grasasSaturadas,
+            grasasInsaturadas: breakfast.grasasInsaturadas + lunch.grasasInsaturadas + dinner.grasasInsaturadas,
+            hidratosCarbono: breakfast.hidratosCarbono + lunch.hidratosCarbono + dinner.hidratosCarbono,
+            azucares: breakfast.azucares + lunch.azucares + dinner.azucares,
+            proteinas: breakfast.proteinas + lunch.proteinas + dinner.proteinas,
         };
     };
 
@@ -311,6 +392,76 @@ const MenuComposer = () => {
             </section>
 
             <section className="menu-section">
+                <h1>Comida</h1>
+                <div className="product-grid">
+                    {lunchMenu.map((product, index) => (
+                        <div key={index} className="product-card">
+                            <img src={product.image} alt={product.name} />
+                            <h3>{product.name}</h3>
+                            <LinkButton
+                                href={product.link}
+                                text={product.link.includes('mercadona') ? 'Comprar en Mercadona' : 'Comprar en Amazon'}
+                                icon={<FontAwesomeIcon icon={faExternalLink} />}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div className="button-container">
+                    <button
+                        onClick={generateLunch}
+                        className={`generate-button ${isGeneratingLunch ? 'generating' : ''}`}
+                        disabled={isGeneratingLunch}
+                    >
+                        <FontAwesomeIcon icon={faRotate} className={isGeneratingLunch ? 'rotating' : ''} />
+                        Generar Comida
+                    </button>
+                </div>
+                <div className="menu-container">
+                    {lunchMenu.length > 0 && !isGeneratingLunch && (
+                        <>
+                            <div className="menu-description">
+                                {lunchMenu.map((product, index) => {
+                                    if (product.type === 'protein') {
+                                        return <span key={index}>{goal === 'perder' ? '125' : '180'}gr de {product.name}</span>;
+                                    }
+                                    if (product.type === 'carbohydrate') {
+                                        return <span key={index}>{goal === 'perder' ? '60' : '80'}gr de {product.name}</span>;
+                                    }
+                                    if (product.type === 'vegetable') {
+                                        return <span key={index}>{product.name}</span>;
+                                    }
+                                    return null;
+                                }).filter(Boolean).map((item, index, array) => (
+                                    <span key={`separator-${index}`} className='menu-description-item'>
+                                        {item}
+                                        {index < array.length - 1 && ' + '}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="calories-info">
+                                Número de calorías de esta comida:{' '}
+                                <span className="calories-number">
+                                    {Math.round(lunchMenu.reduce((total, product) => {
+                                        const multiplier =
+                                            product.type === 'protein' ? (goal === 'perder' ? 1.25 : 1.8) :
+                                                product.type === 'carbohydrate' ? (goal === 'perder' ? 0.6 : 0.8) :
+                                                    product.type === 'vegetable' ? 1.8 : 0;
+                                        return total + (product.nutrition.energia * multiplier);
+                                    }, 0))} kcal
+                                </span>
+                            </div>
+                            <div className="nutrition-table">
+                                <h4>Tabla nutricional de la comida</h4>
+                                {getNutritionTable(calculateLunchNutrition())}
+                            </div>
+                        </>
+                    )}
+                </div>
+            </section>
+
+            <section className="menu-section">
                 <h1>Cena</h1>
                 <div className="product-grid">
                     {dinnerMenu.map((product, index) => (
@@ -382,7 +533,7 @@ const MenuComposer = () => {
                 </div>
             </section>
 
-            {breakfastMenu.length > 0 && dinnerMenu.length > 0 && !isGenerating && !isGeneratingDinner && (
+            {breakfastMenu.length > 0 && lunchMenu.length > 0 && dinnerMenu.length > 0 && !isGenerating && !isGeneratingLunch && !isGeneratingDinner && (
                 <section className="menu-section">
                     <h1>Total Nutricional del Día</h1>
                     <div className="menu-container">
