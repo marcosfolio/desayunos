@@ -20,13 +20,16 @@ const MenuComposer = () => {
     const [breakfastMenu, setBreakfastMenu] = useState<typeof products>([]);
     const [dinnerMenu, setDinnerMenu] = useState<typeof products>([]);
     const [lunchMenu, setLunchMenu] = useState<typeof products>([]);
+    const [snackMenu, setSnackMenu] = useState<typeof products>([]);
     const [isGenerating, setIsGenerating] = useState(false);
     const [isGeneratingDinner, setIsGeneratingDinner] = useState(false);
     const [isGeneratingLunch, setIsGeneratingLunch] = useState(false);
+    const [isGeneratingSnack, setIsGeneratingSnack] = useState(false);
     const [goal, setGoal] = useState<Goal>('perder');
 
     useEffect(() => {
         generateInitialBreakfast();
+        generateInitialSnack();
         generateInitialLunch();
         generateInitialDinner();
     }, []);
@@ -34,6 +37,7 @@ const MenuComposer = () => {
     useEffect(() => {
         // Regenerate all menus when goal changes
         generateInitialBreakfast();
+        generateInitialSnack();
         generateInitialLunch();
         generateInitialDinner();
     }, [goal]); // Add goal as dependency
@@ -155,6 +159,51 @@ const MenuComposer = () => {
             clearInterval(animationInterval);
             setLunchMenu(generateLunchItems());
             setIsGeneratingLunch(false);
+        }, 1000);
+    };
+
+    const generateInitialSnack = () => {
+        const initialMenu = generateSnackItems();
+        setSnackMenu(initialMenu);
+    };
+
+    const generateSnackItems = () => {
+        if (goal === 'perder') {
+            // For weight loss, only show vegetables
+            const vegetables = products.filter(product =>
+                product.type === 'vegetable' &&
+                product.typeOfMeal.includes('almuerzo')
+            );
+            const randomVegetable = vegetables[Math.floor(Math.random() * vegetables.length)];
+            return [randomVegetable].filter(Boolean);
+        } else {
+            // For energy gain, show one carb and one protein
+            const carbs = products.filter(product =>
+                product.type === 'carbohydrate' &&
+                product.typeOfMeal.includes('almuerzo')
+            );
+            const proteins = products.filter(product =>
+                product.type === 'protein' &&
+                product.typeOfMeal.includes('almuerzo')
+            );
+
+            const randomCarb = carbs[Math.floor(Math.random() * carbs.length)];
+            const randomProtein = proteins[Math.floor(Math.random() * proteins.length)];
+            return [randomCarb, randomProtein].filter(Boolean);
+        }
+    };
+
+    const generateSnack = () => {
+        setIsGeneratingSnack(true);
+
+        const animationInterval = setInterval(() => {
+            setSnackMenu(generateSnackItems());
+        }, 100);
+
+        setTimeout(() => {
+            clearInterval(animationInterval);
+            setSnackMenu(generateSnackItems());
+            setIsGeneratingSnack(false);
         }, 1000);
     };
 
@@ -386,6 +435,69 @@ const MenuComposer = () => {
                                     {getNutritionTable(calculateTotalNutrition())}
                                 </div>
                             )}
+                        </>
+                    )}
+                </div>
+            </section>
+
+            <section className="menu-section">
+                <h1>Almuerzo</h1>
+                <div className="product-grid">
+                    {snackMenu.map((product, index) => (
+                        <div key={index} className={`product-card ${isGeneratingSnack ? 'generating' : ''}`}>
+                            <div className="product-tag" data-type={product.type}>
+                                <FontAwesomeIcon
+                                    icon={getTypeIcon(product.type)}
+                                    className="product-tag-icon"
+                                />
+                            </div>
+                            <h3>{product.name}</h3>
+                            <img src={product.image} alt={product.name} />
+                            <LinkButton
+                                href={product.link}
+                                text={product.link.includes('mercadona') ? 'Comprar en Mercadona' : 'Comprar en Amazon'}
+                                icon={<FontAwesomeIcon icon={faExternalLink} />}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div className="button-container">
+                    <button
+                        onClick={generateSnack}
+                        className={`generate-button ${isGeneratingSnack ? 'generating' : ''}`}
+                        disabled={isGeneratingSnack}
+                    >
+                        <FontAwesomeIcon icon={faRotate} className={isGeneratingSnack ? 'rotating' : ''} />
+                        Generar Almuerzo
+                    </button>
+                </div>
+                <div className="menu-container">
+                    {snackMenu.length > 0 && !isGeneratingSnack && (
+                        <>
+                            <div className="menu-description">
+                                {snackMenu.map((product, index) => (
+                                    <span key={index} className='menu-description-item'>
+                                        {product.type === 'carbohydrate' ? `20gr de ${product.name}` :
+                                            product.type === 'protein' ? `30gr de ${product.name}` :
+                                                product.name}
+                                        {index < snackMenu.length - 1 && ' + '}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="calories-info">
+                                Número de calorías de este almuerzo:{' '}
+                                <span className="calories-number">
+                                    {Math.round(snackMenu.reduce((total, product) => {
+                                        const multiplier =
+                                            product.type === 'carbohydrate' ? 0.2 :
+                                                product.type === 'protein' ? 0.3 :
+                                                    product.type === 'vegetable' ? 1 : 0;
+                                        return total + (product.nutrition.energia * multiplier);
+                                    }, 0))} kcal
+                                </span>
+                            </div>
                         </>
                     )}
                 </div>
