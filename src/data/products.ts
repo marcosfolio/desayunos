@@ -3,7 +3,7 @@ import panDextrinado from '../assets/images/pan_dextri.jpg';
 import cremaCacahuete from '../assets/images/crema_cacahuete.jpg';
 import panFibraSesamo from '../assets/images/pan_fibra_and_sesamo.jpg';
 import pepinillosPequenos from '../assets/images/pepinillos_pequenos.jpg';
-import brocoliMicrohondas from '../assets/images/brocoli.jpg';
+import brocoliMicroondas from '../assets/images/brocoli.jpg';
 import tomatesDulcita from '../assets/images/tomates_dulcita.jpg';
 import yogurProteicoFresa from '../assets/images/yogur_proteico_fresa.jpg';
 import cottageCheese from '../assets/images/cottage_cheese.jpg';
@@ -180,8 +180,8 @@ export const products: Product[] = [
         }
     },
     {
-        name: "Brócoli microhondas",
-        image: brocoliMicrohondas,
+        name: "Brócoli microondas",
+        image: brocoliMicroondas,
         type: "vegetable",
         link: "https://tienda.mercadona.es/product/69622/floretas-brocoli-microondas-paquete",
         typeOfMeal: ['comida', 'cena'],
@@ -199,7 +199,7 @@ export const products: Product[] = [
         name: "Tomates dulcita",
         image: tomatesDulcita,
         type: "vegetable",
-        link: "https://tienda.mercadona.es/product/69622/floretas-brocoli-microondas-paquete",
+        link: "https://tienda.mercadona.es/product/69414/tomates-cherry-rama-dulcita-bandeja",
         typeOfMeal: ['desayuno', 'comida', 'cena'],
         nutrition: {
             energia: 33,
