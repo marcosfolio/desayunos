@@ -1,11 +1,16 @@
-import React from 'react';
-import { useFetch } from '../../hooks/useFetch';
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { firestore } from '../../config/firebase';
 import './FoodAndPortions.css';
 
 interface NutrientItem {
-    id: number;
+    id: string;
     name: string;
-    grams: number;
+    type: 'protein' | 'carbohydrate' | 'vegetable';
+    nutrition: {
+        proteinas: number;
+        // ... other nutrition fields
+    };
 }
 
 interface NutrientConfig {
@@ -44,30 +49,49 @@ const NutrientTable = ({ type, title, data }: NutrientTableProps) => (
 );
 
 const FoodAndPortions = () => {
-    const proteins = useFetch<NutrientItem[]>(nutrientConfigs[0].endpoint);
-    const carbohydrates = useFetch<NutrientItem[]>(nutrientConfigs[1].endpoint);
-    const vegetables = useFetch<NutrientItem[]>(nutrientConfigs[2].endpoint);
+    const [products, setProducts] = useState<NutrientItem[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const nutrients = [
-        { ...proteins, type: 'proteins' },
-        { ...carbohydrates, type: 'carbohydrates' },
-        { ...vegetables, type: 'vegetables' }
-    ];
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(firestore, 'products'));
+                const productsData = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as NutrientItem[];
+                setProducts(productsData);
+            } catch (err) {
+                setError('Error loading products');
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    if (nutrients.some(n => n.loading)) return <div>Loading...</div>;
-    if (nutrients.some(n => n.error)) return <div>Error loading data</div>;
-    if (nutrients.some(n => !n.data)) return null;
+        fetchProducts();
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
+
+    const groupedProducts = {
+        proteins: products.filter(p => p.type === 'protein'),
+        carbohydrates: products.filter(p => p.type === 'carbohydrate'),
+        vegetables: products.filter(p => p.type === 'vegetable')
+    };
 
     return (
         <div className="food-and-portions">
             <h1 className="food-and-portions-title">Food & Portions</h1>
             <div className="nutrients-section">
-                {nutrients.map(nutrient => (
+                {Object.entries(groupedProducts).map(([type, items]) => (
                     <NutrientTable
-                        key={nutrient.type}
-                        type={nutrient.type}
-                        title={nutrient.type.charAt(0).toUpperCase() + nutrient.type.slice(1)}
-                        data={nutrient.data || []}
+                        key={type}
+                        type={type}
+                        title={type.charAt(0).toUpperCase() + type.slice(1)}
+                        data={items}
                     />
                 ))}
             </div>

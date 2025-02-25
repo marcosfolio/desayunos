@@ -28,6 +28,16 @@ import polloAsadoHacendado from '../assets/images/pollo_asado_hacendado.jpg';
 import filetesPavoContramuslo from '../assets/images/filetes_pavo_contramuslo.jpg';
 import medallonesMerluzaHacendado from '../assets/images/medallones_merluza_ultracongelada_hacendado.jpg';
 import filetesBacalaoUltracongelado from '../assets/images/filetes_bacalao_ultracongelado.jpg';
+import quesoFrescoBurgosHacendado from '../assets/images/queso_fresco_burgos_hacendado.jpg';
+import quesoFrescoBurgosHacendadoCero from '../assets/images/queso_fresco_burgos_hacendado_cero.jpg';
+import yogurDesnatadoCocoHacendado from '../assets/images/yogur_desnatado_coco_hacendado.jpg';
+import cerealesAvenaCrunchy from '../assets/images/cereales_avena_crunchy.jpg';
+import cerealesAvenaCrunchyCacao from '../assets/images/cereales_avena_crunchy_cacao.jpg';
+import cerealesMaizHacendadoCero from '../assets/images/cereales_maiz_hacendado_cero.jpg';
+import kiwisAmarillos from '../assets/images/kiwis_amarillos.jpg';
+import frambuesas from '../assets/images/frambuesas.jpg';
+import mandarinas from '../assets/images/mandarinas.jpg';
+import fresones from '../assets/images/fresones.jpg';
 
 interface NutritionInfo {
     energia: number;
@@ -96,6 +106,54 @@ export const products: Product[] = [
             grasasInsaturadas: 6.5,
             hidratosCarbono: 60.1,
             azucares: 3,
+            proteinas: 13
+        }
+    },
+    {
+        name: "Cereales maíz Hacendado 0%",
+        image: cerealesMaizHacendadoCero,
+        type: "carbohydrate",
+        link: "https://tienda.mercadona.es/product/22966/cereales-copos-maiz-corn-flakes-hacendado-0-azucares-anadidos-caja",
+        typeOfMeal: ['desayuno'],
+        nutrition: {
+            energia: 373,
+            grasas: 1.1,
+            grasasSaturadas: 0.4,
+            grasasInsaturadas: 0.7,
+            hidratosCarbono: 82,
+            azucares: 0.9,
+            proteinas: 6.7
+        }
+    },
+    {
+        name: "Cereales avena crunchy",
+        image: cerealesAvenaCrunchy,
+        type: "carbohydrate",
+        link: "https://tienda.mercadona.es/product/15611/cereales-avena-crunchy-hacendado-85-avena-integral-bajo-contenido-azucar-caja",
+        typeOfMeal: ['desayuno'],
+        nutrition: {
+            energia: 390,
+            grasas: 5.8,
+            grasasSaturadas: 1,
+            grasasInsaturadas: 4.8,
+            hidratosCarbono: 66,
+            azucares: 4.6,
+            proteinas: 13
+        }
+    },
+    {
+        name: "Cereales avena crunchy cacao",
+        image: cerealesAvenaCrunchyCacao,
+        type: "carbohydrate",
+        link: "https://tienda.mercadona.es/product/52751/cereales-avena-crunchy-hacendado-cacao-caja",
+        typeOfMeal: ['desayuno'],
+        nutrition: {
+            energia: 393,
+            grasas: 6.4,
+            grasasSaturadas: 1.6,
+            grasasInsaturadas: 4.8,
+            hidratosCarbono: 65,
+            azucares: 9,
             proteinas: 13
         }
     },
@@ -244,6 +302,70 @@ export const products: Product[] = [
         }
     },
     {
+        name: "Kiwis amarillos",
+        image: kiwisAmarillos,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/3839/kiwis-amarillos-bandeja",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 79,
+            grasas: 0.2,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0.2,
+            hidratosCarbono: 15.8,
+            azucares: 12.3,
+            proteinas: 1
+        }
+    },
+    {
+        name: "Frambuesas",
+        image: frambuesas,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/5500/frambuesa-bandeja",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 52,
+            grasas: 0.6,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0.6,
+            hidratosCarbono: 11.9,
+            azucares: 4.4,
+            proteinas: 1.2
+        }
+    },
+    {
+        name: "Mandarinas",
+        image: mandarinas,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/3238/mandarina-pieza",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 43,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 9,
+            azucares: 9,
+            proteinas: 0.8
+        }
+    },
+    {
+        name: "Fresones",
+        image: fresones,
+        type: "vegetable",
+        link: "https://tienda.mercadona.es/product/3715/freson-bandeja",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 32,
+            grasas: 0,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0,
+            hidratosCarbono: 7.6,
+            azucares: 4.6,
+            proteinas: 0.6
+        }
+    },
+    {
         name: "Manzana golden",
         image: manzanaGolden,
         type: "vegetable",
@@ -257,6 +379,22 @@ export const products: Product[] = [
             hidratosCarbono: 13,
             azucares: 10,
             proteinas: 0.2
+        }
+    },
+    {
+        name: "Yogur desnatado coco Hacendado",
+        image: yogurDesnatadoCocoHacendado,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/21363/yogur-sabor-coco-hacendado-0-mg-0-sin-azucares-anadidos-pack-4",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 151,
+            grasas: 0.1,
+            grasasSaturadas: 0,
+            grasasInsaturadas: 0.1,
+            hidratosCarbono: 4.4,
+            azucares: 4.4,
+            proteinas: 4.3
         }
     },
     {
@@ -449,6 +587,38 @@ export const products: Product[] = [
             hidratosCarbono: 5.4,
             azucares: 4.4,
             proteinas: 8.7
+        }
+    },
+    {
+        name: "Queso fresco de Burgos Hacendado",
+        image: quesoFrescoBurgosHacendado,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/52408/queso-fresco-burgos-natural-hacendado-pack-4",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 150,
+            grasas: 10.4,
+            grasasSaturadas: 7.1,
+            grasasInsaturadas: 3.3,
+            hidratosCarbono: 3.7,
+            azucares: 3.7,
+            proteinas: 10.3
+        }
+    },
+    {
+        name: "Queso fresco de Burgos Hacendado 0%",
+        image: quesoFrescoBurgosHacendadoCero,
+        type: "protein",
+        link: "https://tienda.mercadona.es/product/52409/queso-fresco-burgos-desnatado-0-mg-hacendado-pack-4",
+        typeOfMeal: ['desayuno', 'almuerzo', 'merienda'],
+        nutrition: {
+            energia: 67,
+            grasas: 0.4,
+            grasasSaturadas: 0.1,
+            grasasInsaturadas: 0.3,
+            hidratosCarbono: 3.9,
+            azucares: 3.9,
+            proteinas: 12
         }
     },
     {

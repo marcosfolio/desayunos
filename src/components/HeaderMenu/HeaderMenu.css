@@ -1,8 +1,12 @@
 .header-menu {
     background: #f9f9f9;
-    padding: 1rem;
+    padding: 1rem 2rem;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    margin-top: 20px;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu-list {
@@ -10,9 +14,10 @@
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
+    align-items: center;
     font-size: 14px;
     gap: 2rem;
+    justify-content: center;
 }
 
 .menu-list li {
@@ -35,4 +40,84 @@
 .menu-list a.active {
     border: 1px solid #ccc;
     background-color: #fff;
+}
+
+.login-section {
+    position: absolute;
+    top: 3px;
+    right: 20px;
+    z-index: 101;
+}
+
+/* Adjust LoginComponent styles for header */
+.login-section .auth-section {
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    background: none;
+}
+
+.login-section .user-profile {
+    padding: 0;
+}
+
+.login-section .profile-image {
+    width: 40px;
+    height: 40px;
+}
+
+.login-section .user-info h3 {
+    font-size: 1rem;
+}
+
+.login-section .user-info p {
+    font-size: 0.875rem;
+}
+
+.login-section .signout-button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.logo-container {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.app-logo {
+    font-size: 24px;
+    animation: colorChange 10s infinite;
+}
+
+.app-title {
+    font-size: 21px;
+    font-weight: bold;
+    animation: colorChange 10s infinite;
+}
+
+@keyframes colorChange {
+    0% {
+        color: #4CAF50;
+    }
+
+    25% {
+        color: #2196F3;
+    }
+
+    50% {
+        color: #9C27B0;
+    }
+
+    75% {
+        color: #F44336;
+    }
+
+    100% {
+        color: #4CAF50;
+    }
 }

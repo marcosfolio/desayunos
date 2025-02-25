@@ -20,4 +20,9 @@ export const MENU_ITEMS = {
         es: '¿Cómo comer?',
         en: 'How to eat?',
     },
+    UPLOAD_PRODUCT: {
+        path: '/upload-product',
+        es: 'Subir producto',
+        en: 'Upload Product',
+    },
 } as const;
